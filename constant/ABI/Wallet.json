@@ -1,0 +1,125 @@
+{
+  "contractName": "Wallet",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Wallet.sol\":\"Wallet\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Wallet.sol\":{\"keccak256\":\"0x52de51cf22f28769f01fd85dfcda4a53217e321bba0ce4b04f7aebc8c7bd8e1d\",\"urls\":[\"bzz-raw://77d4cbf30c9b4728c2fa88c8c886e1010d4aa4a84fa27c07ac5a7c8639d9b5a2\",\"dweb:/ipfs/Qmad6QM2QmkENERnYtpaNfm7V4gQhVrWxLhDVskZK4BwR7\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220167b9c340f0ef05b923b90c9d18750e949f373610366eeadafabdcc5ca3587f864736f6c63430008090033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220167b9c340f0ef05b923b90c9d18750e949f373610366eeadafabdcc5ca3587f864736f6c63430008090033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "28:26:1:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "28:26:1:-:0;;;;;",
+  "source": "pragma solidity >=0.8.0;\r\n\r\ncontract Wallet {\r\n    \r\n}\r\n",
+  "sourcePath": "F:\\Work\\KhoaLuan\\app-bc\\contracts\\Wallet.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Wallet.sol",
+    "exportedSymbols": {
+      "Wallet": [
+        193
+      ]
+    },
+    "id": 194,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 192,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Wallet",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 193,
+        "linearizedBaseContracts": [
+          193
+        ],
+        "name": "Wallet",
+        "nameLocation": "37:6:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 194,
+        "src": "28:26:1",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:56:1"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/Wallet.sol",
+    "exportedSymbols": {
+      "Wallet": [
+        193
+      ]
+    },
+    "id": 194,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 192,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Wallet",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 193,
+        "linearizedBaseContracts": [
+          193
+        ],
+        "name": "Wallet",
+        "nameLocation": "37:6:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 194,
+        "src": "28:26:1",
+        "usedErrors": []
+      }
+    ],
+    "src": "0:56:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.9+commit.e5eed63a.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x8ab8ebC290dc42E7eCD8f697683270B5320C2956",
+      "transactionHash": "0xd37231028647a34b063d116a4d0dc90d5c286420ece7ca31033ea9f4bb627c8b"
+    }
+  },
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-08T10:21:48.375Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

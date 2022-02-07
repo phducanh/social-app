@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: RobotoRegular;
+  src: url(/fonts/Roboto-Regular.ttf);
+}
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: RobotoRegular;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
