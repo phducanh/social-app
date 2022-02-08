@@ -14,7 +14,7 @@ export default function Login() {
   };
   return (
     <div className="login w-1/2  md:w-2/3 lg:w-[500px] mx-auto py-20 px-[65px] bg-[#F7F8FC] my-[10%]">
-      <h1 className="text-center text-2xl font-bold text-[#3BDEC1] mb-16">
+      <h1 className="text-center text-2xl font-bold text-primary mb-16">
         Login
       </h1>
       <Form
@@ -60,12 +60,12 @@ export default function Login() {
         </Link>
         <div className="flex justify-between mt-9 border-b mb-6">
           <Link href={`/register`}>
-            <a className="text-[#3BDEC1] font-bold">
+            <a className="text-primary font-bold">
               {t(`common:createAccount`)}
             </a>
           </Link>
           <Form.Item>
-            <button type="submit" className="bg-[#3BDEC1] py-2 px-11">
+            <button type="submit" className="bg-primary py-2 px-11">
               <span className="font-bold tracking-wider">
                 {t(`common:next`)}
               </span>
