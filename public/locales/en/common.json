@@ -1,5 +1,6 @@
 {
     "createAccount": "Create user account",
     "forgotPassword": "Forgot password?",
-    "next": "Next"
+    "next": "Next",
+    "search": "Search"
 }
