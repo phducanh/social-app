@@ -1,12 +1,16 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
-import Link from "next/link";
+import { CustomModal } from "@components/CustomModal";
 
 export default function Login() {
   const { t } = useTranslation();
+
+  const [showModal, setShowModal] = useState(false);
   const onFinish = (values) => {
     console.log("Success:", values);
+    setShowModal(true);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -15,8 +19,9 @@ export default function Login() {
   return (
     <div className="login w-1/2  md:w-2/3 lg:w-[500px] mx-auto py-20 px-[65px] bg-[#F7F8FC] my-[10%]">
       <h1 className="text-center text-2xl font-bold text-primary mb-16">
-        Login
+        {t(`common:changePassword`)}
       </h1>
+      {showModal && <CustomModal isSuccess={true} type="change-password"/>}
       <Form
         name="basic"
         initialValues={{
@@ -27,48 +32,53 @@ export default function Login() {
         autoComplete="off"
         layout="vertical"
       >
-        <Form.Item
-          label="Email adress"
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: "Please input your email adress!",
-            },
-          ]}
-        >
-          <Input className="px-4 py-2.5" />
-        </Form.Item>
         <label htmlFor="password" className="">
-          Password
+          {t(`common:password`)}
         </label>
         <Form.Item
           name="password"
-          className="mb-2"
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: t(`common:pleaseInputPassword`),
             },
           ]}
         >
           <Input.Password className="px-4 py-2.5" />
         </Form.Item>
-        <Link href={`/forgot-password`}>
-          <a className="block text-[#5770FF] text-right">
-            {t(`common:forgotPassword`)}
-          </a>
-        </Link>
-        <div className="flex justify-between mt-9  mb-6 border-[#E4E4E4] border-b items-center pb-6">
-          <Link href={`/register`}>
-            <a className="text-primary font-bold">
-              {t(`common:createAccount`)}
-            </a>
-          </Link>
-          <Form.Item className="mb-0">
-            <button type="submit" className="bg-primary py-2 px-11">
+        <label htmlFor="cf-password" className="">
+          {t(`common:confirmPassword`)}
+        </label>
+        <Form.Item
+          name="cf-password"
+          dependencies={["password"]}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: t(`common:pleaseInputPassword`),
+            },
+            ,
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+
+                return Promise.reject(
+                  new Error("The two passwords that you entered do not match!")
+                );
+              },
+            }),
+          ]}
+        >
+          <Input.Password className="px-4 py-2.5" />
+        </Form.Item>
+        <div className="flex justify-center mt-16">
+          <Form.Item>
+            <button type="submit" className="bg-primary py-2 px-7">
               <span className="font-bold tracking-wider">
-                {t(`common:next`)}
+                {t(`common:changePassword`)}
               </span>
             </button>
           </Form.Item>

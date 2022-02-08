@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import { Form, Input, Button, Checkbox } from "antd";
 import Link from "next/link";
 
-export default function Login() {
+export default function ForgotPassword() {
   const { t } = useTranslation();
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -14,9 +14,13 @@ export default function Login() {
   };
   return (
     <div className="login w-1/2  md:w-2/3 lg:w-[500px] mx-auto py-20 px-[65px] bg-[#F7F8FC] my-[10%]">
-      <h1 className="text-center text-2xl font-bold text-primary mb-16">
-        Login
+      <h1 className="text-center text-2xl font-bold text-primary mb-11">
+        {t(`common:forgotPassword2`)}
       </h1>
+      <p className="mb-6 font-medium">
+        {t(`common:willSend`)}<br/>
+        {t(`common:willSend2`)}
+      </p>
       <Form
         name="basic"
         initialValues={{
@@ -28,7 +32,6 @@ export default function Login() {
         layout="vertical"
       >
         <Form.Item
-          label="Email adress"
           name="email"
           rules={[
             {
@@ -37,36 +40,14 @@ export default function Login() {
             },
           ]}
         >
-          <Input className="px-4 py-2.5" />
+          <Input
+            placeholder={t(`common:yourEmailAddress`)}
+            className="px-4 py-2.5"
+          />
         </Form.Item>
-        <label htmlFor="password" className="">
-          Password
-        </label>
-        <Form.Item
-          name="password"
-          className="mb-2"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input.Password className="px-4 py-2.5" />
-        </Form.Item>
-        <Link href={`/forgot-password`}>
-          <a className="block text-[#5770FF] text-right">
-            {t(`common:forgotPassword`)}
-          </a>
-        </Link>
-        <div className="flex justify-between mt-9  mb-6 border-[#E4E4E4] border-b items-center pb-6">
-          <Link href={`/register`}>
-            <a className="text-primary font-bold">
-              {t(`common:createAccount`)}
-            </a>
-          </Link>
-          <Form.Item className="mb-0">
-            <button type="submit" className="bg-primary py-2 px-11">
+        <div className="flex justify-center mt-[132px]">
+          <Form.Item className='mb-5'>
+            <button type="submit" className="bg-primary py-2.5 px-7">
               <span className="font-bold tracking-wider">
                 {t(`common:next`)}
               </span>
