@@ -2,7 +2,15 @@
     "search" : "Tìm kiếm",
     "notification": "Thông báo",
     "login" : "Đăng nhập",
+
     "createAccount": "Tạo tài khoản mới",
+    "register": "Tạo tài khoản",
+    "pleaseInputUsername": "Hãy nhập user name của bạn!",
+    "pleaseInputEmail": "Hãy nhập địa chỉ email của bạn!",
+    "termsOfUses": "Điều khoản sử dụng",
+    "privacyPolicy": "Chính sách bảo mật",
+    "acceptPrivacy": "Tôi đã đọc và đồng ý với ",
+
     "forgotPassword": "Quên mật khẩu?",
     "forgotPassword2": "Quên mật khẩu",
     "sentPwdConfirm": "Link reset password đã được gửi tới email",
