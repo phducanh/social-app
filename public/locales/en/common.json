@@ -2,5 +2,6 @@
     "createAccount": "Create user account",
     "forgotPassword": "Forgot password?",
     "next": "Next",
-    "search": "Search"
+    "search": "Search",
+    "login": "Login"
 }

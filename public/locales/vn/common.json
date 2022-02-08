@@ -4,5 +4,18 @@
     "login" : "Đăng nhập",
     "createAccount": "Tạo tài khoản mới",
     "forgotPassword": "Quên mật khẩu?",
-    "next": "Tiếp theo"
+    "forgotPassword2": "Quên mật khẩu",
+    "sentPwdConfirm": "Link reset password đã được gửi tới email",
+    "checkMail": "Hãy kiểm tra mail của bạn.",
+    "didnotReceive": "Chưa nhận được link?",
+    "resend": "Gửi lại",
+    "next": "Tiếp theo",
+    "willSend":"Chúng tôi sẽ gửi URL reset password",
+    "willSend2":"Hãy nhập địa chỉ email đã đăng ký COINSON",
+    "yourEmailAddress": "Địa chỉ email của bạn",
+    "password":"Mật khẩu",
+    "confirmPassword":"Xác nhận lại mật khẩu",
+    "pleaseInputPassword": "Hãy nhập mật khẩu của bạn!",
+    "changePassword": "Đổi mật khẩu",
+    "passwordReseted": "Đổi mật khẩu thành công."
 }
