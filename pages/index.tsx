@@ -26,6 +26,28 @@ import { useRouter } from "next/router";
 import { getWeb3 } from "@utils/getWeb3";
 import SimpleStorage from "../constant/ABI/SimpleStorage.json";
 import { HeadTag } from "@components/Layout/Head";
+import { CustomMenu } from "@components/Layout/CustomMenu";
+import { YourGroup } from "@components/Group/YourGroup";
+import { JoinedGroup } from "@components/Group/JoinedGroup";
+import { SuggestedGroup } from "@components/Group/SuggestedGroup";
+
+
+import { Post } from "@components/Post";
+import { Row, Col } from "antd";
+
+const post = {
+  id: "iasjdjkaskjdjkkjkxcjzkczkjxzzc",
+  like: 90,
+  dislike: 10,
+  ownerId: "abcxyz",
+  groupId: "nxmxmcn",
+  content: "This is content of post",
+  imageList: [
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/149px-Picture_icon_BLACK.svg.png",
+  ],
+  postedAt: 1619434004304,
+  comment: 20,
+};
 
 export default function Home() {
   const { t } = useTranslation();
@@ -54,11 +76,25 @@ export default function Home() {
     // fetchMyAPI();
   }, []);
   return (
-    <div>
+    <>
       <HeadTag />
-      My App
-      {value}
-    </div>
+      <Row>
+        <Col className="">
+          <CustomMenu />
+          <YourGroup title={t(`common:layout.yourGroup`)} />
+          <JoinedGroup title={t(`common:layout.joinedGroup`)} />
+        </Col>
+        <Col flex={2} className="mx-auto ">
+          <div className="post-container w-[700px] mx-auto">
+            <Post data={post} />
+          </div>
+        </Col>
+        <Col className="">
+          <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
+          
+        </Col>
+      </Row>
+    </>
   );
 }
 

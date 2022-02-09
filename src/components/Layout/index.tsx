@@ -9,7 +9,7 @@ export const LayoutAll = ({ children }) => {
     <>
       <Layout>
         <CustomHeader/>
-        <Content>{children}</Content>
+        <Content className="pl-2 pt-3">{children}</Content>
         <Footer>Footer</Footer>
       </Layout>
     </>
