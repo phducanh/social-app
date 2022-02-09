@@ -40,6 +40,8 @@ module.exports = {
       pink: colors.pink,
       rose: colors.rose,
       primary: "#3BDEC1",
+      active: "#C6FAF0",
+      active2: "#15705F"
     })
   },
   plugins: [],

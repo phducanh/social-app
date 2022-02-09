@@ -25,5 +25,27 @@
     "confirmPassword":"Xác nhận lại mật khẩu",
     "pleaseInputPassword": "Hãy nhập mật khẩu của bạn!",
     "changePassword": "Đổi mật khẩu",
-    "passwordReseted": "Đổi mật khẩu thành công."
+    "passwordReseted": "Đổi mật khẩu thành công.",
+    "layout" : {
+        "newFeed" : "Bảng tin",
+        "account" : "Tài khoản",
+        "createGroup" : "Tạo nhóm",
+        "yourGroup":"Nhóm do bạn quản lý",
+        "joinedGroup": "Nhóm đã tham gia",
+        "suggestedGroup" : "Nhóm được gợi ý",
+        "like" : "Hữu ích",
+        "unlike" : "Không hữu ích",
+        "comment" : "Bình luận",
+        "reply" : "Phản hồi",
+        "addComment" : "Viết bình luận...",
+        "lastActivation" : "Lần hoạt động gần nhất: "
+    },
+    "time":{
+        "minute":"phút",
+        "hour":"giờ",
+        "day":"ngày",
+        "week":"tuần",
+        "month":"tháng",
+        "year":"năm"
+    }
 }

@@ -15,7 +15,7 @@ export default function Login() {
   return (
     <div className="login w-1/2  md:w-2/3 lg:w-[500px] mx-auto py-20 px-[65px] bg-[#F7F8FC] my-[10%]">
       <h1 className="text-center text-2xl font-bold text-primary mb-16">
-        Login
+        {t(`common:login`)}
       </h1>
       <Form
         name="basic"
