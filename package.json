@@ -2,12 +2,13 @@
   "name": "bc-app-client",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 8080",
+    "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@cometchat-pro/chat": "^3.0.6",
     "antd": "^4.18.5",
     "autoprefixer": "^10.4.2",
