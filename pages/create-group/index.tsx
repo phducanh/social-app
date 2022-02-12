@@ -17,38 +17,6 @@ enum change {
   POST_APPROVE
 }
 
-const privacy_group = [
-  {
-    value: 0,
-    name: "Nhóm Công khai",
-    label: "Công khai",
-    script: "Bất kì ai cũng có thể nhìn thấy mọi người trong nhóm và những gì họ đăng",
-    image: "/images/icons/earth-fill.png",
-  },
-  {
-    value: 1,
-    name:"Nhóm riêng tư",
-    label: "Riêng tư",
-    script: "Chỉ thành viên mới nhìn thấy mọi người trong nhóm và những gì họ đăng",
-    image: "/images/icons/lock-fill.png",
-  }
-]
-
-const money = [
-  {
-    value: 0,
-    label: "Miễn phí",
-    script: "Không phải trả phí khi tham gia nhóm",
-    image: "/images/icons/free-fill.png",
-  },
-  {
-    value: 1,
-    label: "Có phí",
-    script: "Trả phí theo qui định khi tham gia nhóm",
-    image: "/images/icons/money-fill.png",
-  }
-]
-
 // biến dùng để thử giá trị-------------------------------------------
 const author = {
   id: "123",
@@ -56,18 +24,6 @@ const author = {
   image:
   "https://anhdep123.com/wp-content/uploads/2021/05/avatar-mau-trang.jpg",
 };
-
-const group2 = {
-  name: "Tên nhóm",
-  descript: "Đây là nhóm của bạn",
-  privacy: privacy_group[0],
-  group_type: money[0],
-  general:  {
-      label: "Tổng quát",
-      image: "icon",
-  },
-}
-
 
 export default function Create_group() {
   const { t } = useTranslation();
@@ -154,7 +110,15 @@ export default function Create_group() {
             ]}
           >
             <Input type={"text"} className="px-4 py-2.5"placeholder="Tên nhóm" maxLength={75} 
-              onChange={e => changeGroup(change.NAME,e.target.value)}
+              onChange={
+                e => {
+                  if (/^\s*$/.test(e.target.value)){
+                    changeGroup(change.NAME,undefined);
+                  } else {
+                    changeGroup(change.NAME,e.target.value);
+                  }
+                }
+              }
             />
           </Form.Item>
           
@@ -167,7 +131,7 @@ export default function Create_group() {
             ]}
           >
             <Select id="privacy" placeholder="Chọn quyền riêng tư"
-              onChange={e => changeGroup(change.PRIVACY, privacy_group[e])}
+              onChange={e => changeGroup(change.PRIVACY, e)}
             > 
               <Select.Option value="0">Nhóm công khai</Select.Option>
               <Select.Option value="1">Nhóm riêng tư</Select.Option>
@@ -183,7 +147,7 @@ export default function Create_group() {
             ]}
           >
             <Select id="group_type" placeholder="Loại group" className=""
-              onChange={e => changeGroup(change.GROUP_TYPE, money[e])}
+              onChange={e => changeGroup(change.GROUP_TYPE, e)}
             > 
               <Select.Option value="0">Miễn phí</Select.Option>
               <Select.Option value="1">Trả phí</Select.Option>
@@ -241,7 +205,7 @@ export default function Create_group() {
             className="cursor-not-allowed overlay w-[900px] bg-[white] rounded-xl pt-[16px] pb-[10px] mx-[10px] "
           >
             <div
-              className=" m-[10px] bg-[]"
+              className=" m-[10px] bg-[] mix-blend-luminosity"
             >
               <div
                 className="mx-[20px] text-[16px] font-bold "

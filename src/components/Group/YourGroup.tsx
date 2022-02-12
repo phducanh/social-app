@@ -32,7 +32,7 @@ export const YourGroup = (props) => {
   const { t } = useTranslation();
 
   return (
-    <div className="bg-white w-56 mt-3 p-2">
+    <div className="bg-white w-full mt-3 p-2">
       <div className="title mb-3 text-base font-semibold">{title}</div>
       <div className="group-container">
         {group.map((item) => {

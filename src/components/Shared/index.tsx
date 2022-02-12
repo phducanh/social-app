@@ -12,6 +12,7 @@ const author = {
     "https://anhdep123.com/wp-content/uploads/2021/05/avatar-mau-trang.jpg",
   };
 
+
 export const Shared = (props) => {
     const { title } = props;
     const { t } = useTranslation();
@@ -29,25 +30,20 @@ export const Shared = (props) => {
 
     return (
       <div aria-label="Shared" 
-        className="bg-[white] w-full h-[120px] p-2 mr-2 rounded-xl"
+        className="shadow-xl bg-[white] w-full h-[120px] p-2 mr-2 rounded-xl"
       >
         <div
             className="flex justify-start"
         >
+            
             <div aria-label="Avatar user"
-                className="mr-[12px] mt-[10px] h-[36px] w-[36px]">
-                <svg aria-hidden="true" role={"none"} color={""} >
-                    <mask id="jsc_c_u">
-                        <circle cx={30} cy={30} fill="white" r={30}></circle>
-                    </mask>\
-                    <g mask="url(#jsc_c_u)">
-                        <image x="0" y="0" height={"100%"} 
-                        preserveAspectRatio="xMidYMid slice" width={"100%"} 
-                        xlinkHref={author?.image} 
-                        className="h-[36px] w-[36px]">
-                        </image>
-                    </g>
-                </svg>
+                className="mr-[12px] mt-[10px] h-[36px] w-[36px]"
+            >
+                <img
+                    src={author.image}
+                    alt="author-img"
+                    className="h-full bg-gray-400 rounded-full"
+                />
             </div>
             <div
                 className="w-full"
