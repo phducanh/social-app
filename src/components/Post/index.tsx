@@ -30,7 +30,7 @@ export const Post = (props) => {
   };
 
   return (
-    <div className="bg-white p-4">
+    <div className="bg-white p-4 rounded-xl">
       <div className="header">
         <Link href={`/profile?id=${author?.id}`}>
           <div className="author h-10 cursor-pointer flex mb-3">
