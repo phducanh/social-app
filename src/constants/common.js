@@ -1,0 +1,1 @@
+export const MEMBER_TYPE = { GROUP_OWNER: "group-owner", ADMIN: "admin", INSPECTOR: "inspector", MEMBER: "member" };

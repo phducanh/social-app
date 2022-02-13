@@ -1,0 +1,13 @@
+{
+    "groupOwner": "Chủ sở hữu nhóm",
+    "admin": "Quản trị viên",
+    "inspector": "Người kiểm duyệt",
+    "member": "Thành viên",
+    "addToAdmin": "Thêm làm quản trị viên",
+    "addToInspector": "Thêm làm người kiểm duyệt",
+    "all": "Tất cả",
+    "viewer": "Người xem",
+    "removeAdmin": "Gỡ vai trò quản trị viên",
+    "removeInspector": "Gỡ vai trò người kiểm duyệt",
+    "banOutOfGroup": "Xoá khỏi nhóm"
+}
