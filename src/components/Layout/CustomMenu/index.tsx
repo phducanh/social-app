@@ -17,7 +17,7 @@ export const CustomMenu = (props) => {
   useEffect(() => {
     if (router?.pathname === "/") {
       setActive(0);
-    } else if (router?.pathname === "/account") {
+    } else if (router?.pathname === "/profile") {
       setActive(1);
     } else if (router?.pathname === "/create-group") {
       setActive(2);
