@@ -43,6 +43,41 @@ const posts = [
   },
 ];
 
+const members = [
+  {
+    id: 0,
+    username: "dduyen.dlwlrma",
+    image: "https://anhdep123.com/wp-content/uploads/2021/05/avatar-mau-trang.jpg",
+  },
+  {
+    id: 0,
+    username: "dduyen.dlwlrma",
+    image: "https://anhdep123.com/wp-content/uploads/2021/05/avatar-mau-trang.jpg",
+  },
+  {
+    id: 0,
+    username: "dduyen.dlwlrma",
+    image: "https://anhdep123.com/wp-content/uploads/2021/05/avatar-mau-trang.jpg",
+  },
+  
+  {
+    id: 0,
+    username: "dduyen.dlwlrma",
+    image: "https://anhdep123.com/wp-content/uploads/2021/05/avatar-mau-trang.jpg",
+  },
+  {
+    id: 0,
+    username: "dduyen.dlwlrma",
+    image: "https://anhdep123.com/wp-content/uploads/2021/05/avatar-mau-trang.jpg",
+  },
+  {
+    id: 0,
+    username: "dduyen.dlwlrma",
+    image: "https://anhdep123.com/wp-content/uploads/2021/05/avatar-mau-trang.jpg",
+  },
+
+];
+
 const group = {
     id: "ajsjjxjcjjjxxx",
     name: "RVN Group",
@@ -50,8 +85,9 @@ const group = {
     privacy: 0,
     group_type: 0,
     posts: posts,
-    member: "63,6K"
-}
+    member: "63,6K",
+    members: members,
+};
 
 
 
@@ -69,11 +105,11 @@ export default function Group() {
     <div>
       <Row>
         <Col span={6} aria-label="side bar"
-          className="bg-[] border-r overflow-y"
+          className="bg-[] border-r"
         >
           
           <div
-            className="bg-[] mx-auto"
+            className="bg-[blue] mx-auto overflow-auto"
           >
             <CustomMenu />
             <YourGroup title={t(`common:layout.yourGroup`)} />
