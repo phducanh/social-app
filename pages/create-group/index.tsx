@@ -202,10 +202,10 @@ export default function Create_group() {
         className="flex justify-center w-4/5 m-[5px] bg-[]"
       >
           <div aria-label="Xem trước bố cục trên máy tính"
-            className="cursor-not-allowed overlay w-[900px] bg-[white] rounded-xl pt-[16px] pb-[10px] mx-[10px] "
+            className="cursor-not-allowed overlay w-[900px] h-[680px] bg-[white] rounded-xl pt-[16px] pb-[10px] mx-[10px] "
           >
             <div
-              className=" m-[10px] bg-[] mix-blend-luminosity"
+              className=" m-[10px] bg-[] h-full mix-blend-luminosity"
             >
               <div
                 className="mx-[20px] text-[16px] font-bold "
@@ -213,24 +213,28 @@ export default function Create_group() {
                 Xem trước bố cục trên máy tính
               </div>
 
-              <div className="m-[10px] bg-[] overflow-auto">
-                <div aria-label="Group Header"
-                  className="pt-[10px] ">
-                  <GroupHeader data={group} />
-                </div>
-
-                <div
-                  className="flex justify-between bg-[#C6FAF0] mx-[10px] my-[10px] rounded-xl"
-                >
-                  <div
-                    className="bg-[#C6FAF0] rounded-xl py-[10px] w-3/5 m-[10px] pt-0"
-                  >
-                    <Shared data={group} />
+              <div
+                className="bg-[] h-[580px]"
+              >
+                <div className="m-[10px] bg-[] h-full overflow-auto">
+                  <div aria-label="Group Header"
+                    className="pt-[10px] ">
+                    <GroupHeader data={group} />
                   </div>
 
-                  <div aria-label="Preview group"
-                      className="p-[10px] w-2/5 ">
-                      <PreviewGroup data={group} />
+                  <div
+                    className="flex justify-between bg-[#C6FAF0] mx-[10px] my-[10px] rounded-xl"
+                  >
+                    <div
+                      className="bg-[#C6FAF0] rounded-xl py-[10px] w-3/5 m-[10px] pt-0"
+                    >
+                      <Shared data={group} />
+                    </div>
+
+                    <div aria-label="Preview group"
+                        className="p-[10px] w-2/5 ">
+                        <PreviewGroup data={group} />
+                    </div>
                   </div>
                 </div>
               </div>
