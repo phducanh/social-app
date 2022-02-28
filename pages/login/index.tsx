@@ -22,11 +22,14 @@ export default function Login() {
     }
   }, []);
   const onFinish = (values) => {
-    console.log("Success:", values);
     SignIn(values)
       .then((res) => {
         console.log("respo", res);
-        dispatch(setUserInfo(res));
+        if(res.success) {
+          dispatch(setUserInfo(res));
+          router.push("/")
+        }
+        
       })
       .catch(() => {
         dispatch(clearUserInfo());

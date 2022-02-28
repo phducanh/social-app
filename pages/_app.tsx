@@ -17,9 +17,7 @@ function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <LayoutAll>
-
               <Component {...pageProps} />
-
           </LayoutAll>
         </PersistGate>
       </Provider>
