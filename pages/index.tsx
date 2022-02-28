@@ -9,7 +9,9 @@ import { CustomMenu } from "@components/Layout/CustomMenu";
 import { YourGroup } from "@components/Group/YourGroup";
 import { JoinedGroup } from "@components/Group/JoinedGroup";
 import { SuggestedGroup } from "@components/Group/SuggestedGroup";
-
+import GetData from "@hooks/useSWRCustom";
+import Auth from "@/pages/auth";
+import { WithAuthSync } from "@utils/middlewares/checkAuth";
 
 import { Post } from "@components/Post";
 import { Row, Col } from "antd";
@@ -28,11 +30,15 @@ const post = {
   comment: 20,
 };
 
-export default function Home() {
+const Home = () => {
   const { t } = useTranslation();
   const router = useRouter();
 
   const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    GetData("http://localhost:4000").then((res) => console.log("data", res));
+  }, []);
 
   const fetchMyAPI = useCallback(async () => {
     const web3 = await getWeb3();
@@ -42,7 +48,7 @@ export default function Home() {
 
     // const deployedNet = SimpleStorage.networks[networkId];
     const SSContract = new web3.eth.Contract(
-      SimpleStorage.abi,
+      SimpleStorage.abi
       // deployedNet && deployedNet.address
     );
 
@@ -57,7 +63,7 @@ export default function Home() {
     fetchMyAPI();
   }, []);
   return (
-    <>
+    <Auth>
       <HeadTag />
       <Row>
         <Col className="">
@@ -72,12 +78,13 @@ export default function Home() {
         </Col>
         <Col className="">
           <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
-          
         </Col>
       </Row>
-    </>
+    </Auth>
   );
-}
+};
+
+export default Home;
 
 export async function getStaticProps({ locale }) {
   return {
