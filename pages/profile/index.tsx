@@ -9,6 +9,7 @@ import { YourGroup } from "@components/Group/YourGroup";
 import { JoinedGroup } from "@components/Group/JoinedGroup";
 import { SuggestedGroup } from "@components/Group/SuggestedGroup";
 import { LinkCard } from "@components/Profile/LinkCard";
+import { ManageWallet } from "@components/Profile/ManageWallet";
 
 const { TabPane } = Tabs;
 
@@ -21,6 +22,29 @@ const walletData = [
   },
   { id: 3, name: "Momo", number: "0335229871" },
 ];
+
+const coinWallet = {
+  address: "0x7aa78fef2d53a0c15zxcxczxczxcz017e0c2b0a",
+  balance: 800000000,
+  history: [
+    {
+      id: 123,
+      type: "send",
+      from: "0x7aa78fef2d53a0c15zxcxczxczxcz017e0c2b0a",
+      to: "0x344kkfef2d53a0c15zxcxczxczxcz017e0c2b0a",
+      amount: 1000,
+      date: 1523343434233,
+    },
+    {
+      id: 123,
+      type: "receive",
+      from: "0x569945fef2d53a0c15zxcxczxczxcz017e0c2b0a",
+      to: "0x7aa78fef2d53a0c15zxcxczxczxcz017e0c2b0a",
+      amount: 1000,
+      date: 1623343423233,
+    },
+  ],
+};
 export default function Profile() {
   const { t } = useTranslation();
 
@@ -45,7 +69,7 @@ export default function Profile() {
                 tab={t(`profile:manageCoinWallet`)}
                 key={"manage-wallet"}
               >
-                Content of tab 2
+                <ManageWallet data={coinWallet} />
               </TabPane>
             </Tabs>
           </div>

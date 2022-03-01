@@ -17,7 +17,7 @@ export const getWeb3 = () => {
                 console.log("Legacy Metamask")
                 resolve(web3)
             } else {
-                const localProvider = new Web3.providers.HttpProvider('http://127.0.0.1:9545')
+                const localProvider = new Web3.providers.HttpProvider(process.env.NEXT_PUBLIC_PROVIDER)
 
                 const web3 = new Web3(localProvider);
                 console.log("local web3 connected");

@@ -148,8 +148,6 @@ export const GroupHeader = (props) => {
                   className="bg-[] flex -space-x-1 overflow-hidden"
                 >
                   {data?.members?.slice(0, 11).map((item) => {
-                    console.log("membersssss");
-                    console.log(item.image);
                     return (
                       <img
                         key={item?.id}
