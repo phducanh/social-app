@@ -2,20 +2,49 @@ import { Layout, Input, Row, Col } from "antd";
 import { useState, useEffect } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { store } from "@/reducer/store";
+import { useRouter } from "next/router";
+import { Menu, Dropdown, message } from "antd";
+
+import { LogOut } from "@/src/api/post-services";
+
 const { Header } = Layout;
 
 export const CustomHeader = (props) => {
   const { userInfo } = props;
+  const { auth } = store.getState();
 
-  const [user, setUser] = useState(userInfo?.userInfo);
-
-
-
+  const router = useRouter();
 
   const { t } = useTranslation();
   const onSearch = (e) => {
     console.log(e.target.value);
   };
+
+  const handleLogout = () => {
+    console.log("first")
+    LogOut().then((res) => {
+      console.log(res, "tra ve");
+    });
+  };
+  const onClick = ({ key }) => {
+    switch (key) {
+      case "profile":
+        router.push("/profile");
+        return;
+      case "log-out":
+        handleLogout();
+        return;
+      default:
+        return;
+    }
+  };
+  const menu = (
+    <Menu onClick={onClick}>
+      <Menu.Item key="profile">Thông tin tài khoản</Menu.Item>
+      <Menu.Item key="log-out">Đăng xuất</Menu.Item>
+    </Menu>
+  );
 
   const NotAuthMenu = () => {
     console.log("first");
@@ -47,8 +76,7 @@ export const CustomHeader = (props) => {
   };
 
   const AuthMenu = (userInfo) => {
-    console.log("user", userInfo);
-
+    console.log(userInfo, "Chay 2");
     return (
       <>
         {" "}
@@ -62,16 +90,16 @@ export const CustomHeader = (props) => {
             <span className="ml-1 block">{t(`common:notification`)}</span>
           </a>
         </Link>
-        <Link href={`/login`}>
-          <a className="button-item flex items-center">
+        <Dropdown overlay={menu}>
+          <a className="button-item flex items-center ant-dropdown-link">
             <img
               src="/images/user.png"
               alt="user"
               className="w-4 object-contain"
             />
-            <span className="ml-1">{t(`common:login`)}</span>
+            <span className="ml-1">{userInfo?.userInfo.fullName}</span>
           </a>
-        </Link>
+        </Dropdown>
       </>
     );
   };
@@ -99,10 +127,8 @@ export const CustomHeader = (props) => {
           <Col md={12} lg={8} className="h-full max-h-[43px] flex justify-end">
             <div className="button-container flex ">
               <div className="button-item flex items-center"></div>
-              {user && user?.success && (
-                <AuthMenu userInfo={userInfo.userInfo} />
-              )}
-              {!user && <NotAuthMenu />}
+              {auth?.success && <AuthMenu userInfo={auth?.data.user} />}
+              {!auth?.success && <NotAuthMenu />}
             </div>
           </Col>
         </Row>
