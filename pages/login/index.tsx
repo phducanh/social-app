@@ -1,12 +1,39 @@
+import React, { useEffect } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 import { Form, Input, Button, Checkbox } from "antd";
 import Link from "next/link";
+import { SignIn } from "@/src/api/post-services";
+import { useDispatch, useSelector } from "react-redux";
+import { clearUserInfo, setUserInfo } from "@/reducer/auth.slice";
 
 export default function Login() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const router = useRouter();
+
+  const userInfo = useSelector((state: any) => state.auth);
+
+  useEffect(() => {
+    if (userInfo?.id) {
+      router.push("/");
+    }
+  }, []);
   const onFinish = (values) => {
-    console.log("Success:", values);
+    SignIn(values)
+      .then((res) => {
+        console.log("respo", res);
+        if(res.success) {
+          dispatch(setUserInfo(res));
+          router.push("/")
+        }
+        
+      })
+      .catch(() => {
+        dispatch(clearUserInfo());
+      });
   };
 
   const onFinishFailed = (errorInfo) => {

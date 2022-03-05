@@ -4,15 +4,17 @@ import { Form, Input, Button, Checkbox } from "antd";
 import Link from "next/link";
 import { CustomModal } from "@components/CustomModal";
 import { useState } from "react";
-
+import { useRouter } from "next/router";
+import { SignUp } from "@/src/api/post-services";
 
 export default function Register() {
   const { t } = useTranslation();
 
-  const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
   const onFinish = (values) => {
-    console.log("Success:", values);
-    setShowModal(true);
+    SignUp(values)
+      .then((res) => console.log("res", res))
+      .then(() => router.push("/login"));
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -35,7 +37,7 @@ export default function Register() {
       >
         <Form.Item
           label="User name"
-          name="userName"
+          name="fullName"
           rules={[
             {
               required: true,
@@ -43,7 +45,11 @@ export default function Register() {
             },
           ]}
         >
-          <Input type={"text"} className="px-4 py-2.5" placeholder="User name" />
+          <Input
+            type={"text"}
+            className="px-4 py-2.5"
+            placeholder="User name"
+          />
         </Form.Item>
 
         <Form.Item
@@ -52,11 +58,15 @@ export default function Register() {
           rules={[
             {
               required: true,
-              message: t(`common:pleaseInputEmail`) ,
+              message: t(`common:pleaseInputEmail`),
             },
           ]}
         >
-          <Input type={"email"} className="px-4 py-2.5" placeholder="Your email address"/>
+          <Input
+            type={"email"}
+            className="px-4 py-2.5"
+            placeholder="Your email address"
+          />
         </Form.Item>
 
         <label htmlFor="password" className="">
@@ -71,20 +81,11 @@ export default function Register() {
             },
           ]}
         >
-          <Input.Password type={"password"} className="px-4 py-2.5" placeholder="Your password"/>
-          {/* <Popup trigger={<button> Click to open popup </button>} 
-            position="right center">
-              <div className=" border-solid w-1/3  md:w-2/3 lg:w-[300px] mx-auto py-[18px] px-[20px] bg-[#FFFF] my-[10%]">
-                <p className="text-sm">
-                  Password must have at least
-                  <li>8 characters total in total</li>
-                  <li>1 uppercase letter</li>
-                  <li>1 lowercase letter</li>
-                  <li>1 number</li>
-                </p>
-                
-              </div>              
-          </Popup> */}
+          <Input.Password
+            type={"password"}
+            className="px-4 py-2.5"
+            placeholder="Your password"
+          />
         </Form.Item>
 
         <label htmlFor="cf-password" className="">
@@ -99,9 +100,8 @@ export default function Register() {
               required: true,
               message: t(`common:pleaseInputPassword`),
             },
-            ,
+
             ({ getFieldValue }) => ({
-              
               validator(_, value) {
                 if (!value || getFieldValue("password") === value) {
                   return Promise.resolve();
@@ -114,24 +114,26 @@ export default function Register() {
             }),
           ]}
         >
-          <Input.Password className="px-4 py-2.5" placeholder="Confirm your password" />
+          <Input.Password
+            className="px-4 py-2.5"
+            placeholder="Confirm your password"
+          />
         </Form.Item>
 
         <Checkbox>
           <p>
-          {t(`common:acceptPrivacy`)} <Link href={`/terms-of-uses`}>
-              <a className="text-[#5770FF] ">
-                {t(`common:termsOfUses`)}
-              </a>
-            </Link> & <Link href={`/terms-of-uses`}>
-              <a className="text-[#5770FF] ">
-                {t(`common:privacyPolicy`)}
-              </a>
+            {t(`common:acceptPrivacy`)}{" "}
+            <Link href={`/terms-of-uses`}>
+              <a className="text-[#5770FF] ">{t(`common:termsOfUses`)}</a>
+            </Link>{" "}
+            &{" "}
+            <Link href={`/terms-of-uses`}>
+              <a className="text-[#5770FF] ">{t(`common:privacyPolicy`)}</a>
             </Link>
-          </p>         
+          </p>
         </Checkbox>
 
-        <div className="flex justify-center mt-9 border-b mb-6">          
+        <div className="flex justify-center mt-9 border-b mb-6">
           <Form.Item>
             <button type="submit" className="bg-[#3BDEC1] py-2 px-11">
               <span className="font-bold tracking-wider">

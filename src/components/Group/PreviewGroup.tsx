@@ -40,12 +40,6 @@ export const PreviewGroup = (props) => {
     const { data } = props;
     const { t } = useTranslation();
 
-    console.log("preview")
-    console.log(fee_types[data?.group_type])
-    console.log(privacy_types[data?.group_type])
-    console.log(data?.group_type)
-
-
     return (
       <div aria-label="Giới thiệu group" 
         className="shadow-lg border-1 border-black bg-[white] w-full h-full p-2 mr-2 rounded-xl">

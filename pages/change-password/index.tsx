@@ -1,16 +1,27 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
+import { store } from "@/reducer/store";
 import { Form, Input, Button, Checkbox } from "antd";
 import { CustomModal } from "@components/CustomModal";
+import { ChangePassword } from "@/src/api/post-services";
 
 export default function Login() {
   const { t } = useTranslation();
-
+  const { auth } = store.getState();
+  const user = auth.data;
   const [showModal, setShowModal] = useState(false);
   const onFinish = (values) => {
-    console.log("Success:", values);
-    setShowModal(true);
+    ChangePassword(values, user).then(res=>{
+      if(res.success) {
+        console.log(res.data)
+        setShowModal(true);
+      }
+      
+    }).catch(err => {
+      console.log("Loi roi")
+    });
+    
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -21,7 +32,7 @@ export default function Login() {
       <h1 className="text-center text-2xl font-bold text-primary mb-16">
         {t(`common:changePassword`)}
       </h1>
-      {showModal && <CustomModal isSuccess={true} type="change-password"/>}
+      {showModal && <CustomModal isSuccess={true} type="change-password" />}
       <Form
         name="basic"
         initialValues={{
@@ -36,7 +47,22 @@ export default function Login() {
           {t(`common:password`)}
         </label>
         <Form.Item
-          name="password"
+          name="oldPassword"
+          rules={[
+            {
+              required: true,
+              message: t(`common:pleaseInputPassword`),
+            },
+          ]}
+        >
+          <Input.Password className="px-4 py-2.5" />
+        </Form.Item>
+
+        <label htmlFor="newPassword" className="">
+          {t(`common:currentPassword`)}
+        </label>
+        <Form.Item
+          name="newPassword"
           rules={[
             {
               required: true,
@@ -58,10 +84,9 @@ export default function Login() {
               required: true,
               message: t(`common:pleaseInputPassword`),
             },
-            ,
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
+                if (!value || getFieldValue("newPassword") === value) {
                   return Promise.resolve();
                 }
 

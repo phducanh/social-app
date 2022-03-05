@@ -2,7 +2,7 @@
   "name": "bc-app-client",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev -p 3002",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -10,6 +10,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@cometchat-pro/chat": "^3.0.6",
+    "@reduxjs/toolkit": "^1.7.2",
     "antd": "^4.18.5",
     "autoprefixer": "^10.4.2",
     "axios": "^0.24.0",
@@ -17,9 +18,14 @@
     "firebase": "^9.6.6",
     "next": "^12.0.10",
     "next-i18next": "^10.2.0",
+    "next-redux-wrapper": "^7.0.5",
     "postcss": "^8.4.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.1",
     "sass": "^1.43.4",
     "swr": "^1.0.1",
     "tailwindcss": "^3.0.18",

@@ -1,3 +1,10 @@
+import { store } from "@/reducer/store";
+
+export const getUserInfo = () => {
+    const { auth } = store.getState();
+    return auth?.data;
+}
+
 export const calculateActiveTime = (time) => {
 
     return (Date.now() - time) / 1000;
@@ -16,3 +23,7 @@ export const convertLongString = (
         string.length
     )}`;
 };
+
+export const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
