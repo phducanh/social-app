@@ -1,6 +1,4 @@
-import Link from "next/link";
-import { Row, Col, Form, Input, Button} from "antd";
-import { calculateActiveTime } from "@utils/common";
+import { Input, Button} from "antd";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import {FileImageOutlined} from "@ant-design/icons";

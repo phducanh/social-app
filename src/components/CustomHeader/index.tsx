@@ -5,26 +5,23 @@ import Link from "next/link";
 import { store } from "@/reducer/store";
 import { useRouter } from "next/router";
 import { Menu, Dropdown, message } from "antd";
-
+import { clearUserInfo } from "@/reducer/auth.slice";
+import { useDispatch } from "react-redux";
 import { LogOut } from "@/src/api/post-services";
 
 const { Header } = Layout;
 
 export const CustomHeader = (props) => {
-  const { userInfo } = props;
   const { auth } = store.getState();
 
   const router = useRouter();
-
+  const dispatch = useDispatch();
   const { t } = useTranslation();
-  const onSearch = (e) => {
-    console.log(e.target.value);
-  };
+  const onSearch = (e) => {};
 
   const handleLogout = () => {
-    console.log("first")
-    LogOut().then((res) => {
-      console.log(res, "tra ve");
+    LogOut(auth).then((res) => {
+      dispatch(clearUserInfo());
     });
   };
   const onClick = ({ key }) => {
@@ -76,7 +73,6 @@ export const CustomHeader = (props) => {
   };
 
   const AuthMenu = (userInfo) => {
-    console.log(userInfo, "Chay 2");
     return (
       <>
         {" "}

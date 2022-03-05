@@ -1,8 +1,9 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { Form, Input, Button, Checkbox, Select } from "antd";
-import Link from "next/link";
-import { CustomModal } from "@components/CustomModal";
+import { CreateGroup } from "@/src/api/post-services";
+import { useRouter } from "next/router";
+import { store } from "@/reducer/store";
 import { PreviewGroup } from "@components/Group/PreviewGroup";
 import { GroupHeader } from "@components/Group/GroupHeader";
 import { Post } from "@components/Post";
@@ -18,18 +19,12 @@ enum change {
   POST_APPROVE,
 }
 
-// biến dùng để thử giá trị-------------------------------------------
-const author = {
-  id: "123",
-  name: "Mai Phương Chu",
-  image:
-    "https://anhdep123.com/wp-content/uploads/2021/05/avatar-mau-trang.jpg",
-};
-
 export default function Create_group() {
   const { t } = useTranslation();
-
+  const { auth } = store.getState();
   const [group, setGroup] = useState(undefined);
+  const router = useRouter();
+  const user = auth.data.user;
 
   const changeGroup = (type: change, value = undefined) => {
     if (type !== undefined) {
@@ -49,6 +44,10 @@ export default function Create_group() {
 
   const onFinish = (values) => {
     console.log("Success:", values);
+    CreateGroup(values, auth.data).then((res) => {
+      console.log(res.data);
+      router.push("/");
+    });
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -56,7 +55,7 @@ export default function Create_group() {
   };
   return (
     <div className="flex justify-start">
-      <ConfigMoney />
+      {false && <ConfigMoney />}
       <div
         aria-label="Mẫu tạo nhóm"
         className=" w-[350px]  md:w-[350px] lg:w-[300px] py-5 px-[30px] bg-[white] rounded-xl"
@@ -82,7 +81,7 @@ export default function Create_group() {
                   height={"100%"}
                   preserveAspectRatio="xMidYMid slice"
                   width={"100%"}
-                  xlinkHref={author?.image}
+                  xlinkHref={user?.avatar}
                   className="h-[36px] w-[36px]"
                 ></image>
               </g>
@@ -91,7 +90,7 @@ export default function Create_group() {
           <div aria-label="Tên quản trị viên">
             <div className="">
               <span dir="auto" className="text-{16px} font-bold text-[14px]">
-                {author?.name}
+                {user?.fullName}
               </span>
             </div>
             <div>
@@ -113,7 +112,7 @@ export default function Create_group() {
           layout="vertical"
         >
           <Form.Item
-            name="groupName"
+            name="name"
             rules={[
               {
                 required: true,
@@ -165,18 +164,18 @@ export default function Create_group() {
             ]}
           >
             <Select
-              id="group_type"
+              id="payable"
               placeholder="Loại group"
               className=""
               onChange={(e) => changeGroup(change.GROUP_TYPE, e)}
             >
-              <Select.Option value="0">Miễn phí</Select.Option>
-              <Select.Option value="1">Trả phí</Select.Option>
+              <Select.Option value={false}>Miễn phí</Select.Option>
+              <Select.Option value={true}>Trả phí</Select.Option>
             </Select>
           </Form.Item>
 
           <Form.Item
-            name="member_approved"
+            name="memberApproval"
             rules={[
               {
                 required: true,
@@ -185,16 +184,16 @@ export default function Create_group() {
             ]}
           >
             <Select
-              id="member_approved"
+              id="memberApproval"
               placeholder="Cơ chế xét duyệt thành viên"
             >
-              <Select.Option value="0">Không xét duyệt</Select.Option>
-              <Select.Option value="1">Có xét duyệt</Select.Option>
+              <Select.Option value={false}>Không xét duyệt</Select.Option>
+              <Select.Option value={true}>Có xét duyệt</Select.Option>
             </Select>
           </Form.Item>
 
           <Form.Item
-            name="post_approved"
+            name="postApproval"
             rules={[
               {
                 required: true,
@@ -202,10 +201,14 @@ export default function Create_group() {
               },
             ]}
           >
-            <Select id="post_approved" placeholder="Cơ chế xét duyệt bài đăng">
-              <Select.Option value="0">Không xét duyệt</Select.Option>
-              <Select.Option value="1">Xét duyệt công khai</Select.Option>
-              <Select.Option value="2">Xét duyệt riêng tư</Select.Option>
+            <Select id="postApproval" placeholder="Cơ chế xét duyệt bài đăng">
+              <Select.Option value="No Approve">Không xét duyệt</Select.Option>
+              <Select.Option value="Public Approve">
+                Xét duyệt công khai
+              </Select.Option>
+              <Select.Option value="Private Approve">
+                Xét duyệt riêng tư
+              </Select.Option>
             </Select>
           </Form.Item>
 
