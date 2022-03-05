@@ -1,12 +1,11 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { Form, Input, Button, Checkbox, Select } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import { CreateGroup } from "@/src/api/post-services";
 import { useRouter } from "next/router";
 import { store } from "@/reducer/store";
 import { PreviewGroup } from "@components/Group/PreviewGroup";
 import { GroupHeader } from "@components/Group/GroupHeader";
-import { Post } from "@components/Post";
 import { useState } from "react";
 import { Shared } from "@components/Shared";
 import { ConfigMoney } from "@components/Group/ConfigMoney";
@@ -43,7 +42,6 @@ export default function Create_group() {
   };
 
   const onFinish = (values) => {
-    console.log("Success:", values);
     CreateGroup(values, auth.data).then((res) => {
       console.log(res.data);
       router.push("/");

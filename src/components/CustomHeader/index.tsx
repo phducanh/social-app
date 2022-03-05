@@ -1,5 +1,5 @@
 import { Layout, Input, Row, Col } from "antd";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { store } from "@/reducer/store";
@@ -14,20 +14,31 @@ const { Header } = Layout;
 export const CustomHeader = (props) => {
   const { auth } = store.getState();
 
+  const [textSearch, setTextSearch] = useState("");
+
   const router = useRouter();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const onSearch = (e) => {};
+  const onSearch = (e) => {
+    // router.push("/search", { params: { text: textSearch } });
+    router.replace({ pathname: "/search", query: { search: textSearch } });
+  };
 
   const handleLogout = () => {
     LogOut(auth).then((res) => {
       dispatch(clearUserInfo());
     });
   };
+  const handleOnChangeText = (e) => {
+    setTextSearch(e.target.value);
+  };
   const onClick = ({ key }) => {
     switch (key) {
       case "profile":
         router.push("/profile");
+        return;
+      case "change-password":
+        router.push("/change-password");
         return;
       case "log-out":
         handleLogout();
@@ -39,12 +50,12 @@ export const CustomHeader = (props) => {
   const menu = (
     <Menu onClick={onClick}>
       <Menu.Item key="profile">Thông tin tài khoản</Menu.Item>
+      <Menu.Item key="change-password">Đổi mật khẩu</Menu.Item>
       <Menu.Item key="log-out">Đăng xuất</Menu.Item>
     </Menu>
   );
 
   const NotAuthMenu = () => {
-    console.log("first");
     return (
       <>
         {" "}
@@ -115,9 +126,11 @@ export const CustomHeader = (props) => {
           <Col md={12} lg={10}>
             <Input
               name={`search-text`}
+              onChange={handleOnChangeText}
               onPressEnter={onSearch}
               placeholder={t(`common:search`)}
               className="h-[43px] rounded-3xl px-6"
+              value={textSearch}
             />
           </Col>
           <Col md={12} lg={8} className="h-full max-h-[43px] flex justify-end">

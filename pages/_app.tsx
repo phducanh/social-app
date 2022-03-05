@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import persistStore from "redux-persist/lib/persistStore";
 import { store } from "@/reducer/store";
-
+import Auth from "@/pages/auth";
 // import setupAxios from '@/utils/setupAxios';
 
 // axios.create();
@@ -21,7 +21,9 @@ function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <LayoutAll>
+            <Auth>
               <Component {...pageProps} />
+            </Auth>
           </LayoutAll>
         </PersistGate>
       </Provider>

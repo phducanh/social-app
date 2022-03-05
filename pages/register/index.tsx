@@ -3,16 +3,18 @@ import { useTranslation } from "next-i18next";
 import { Form, Input, Button, Checkbox } from "antd";
 import Link from "next/link";
 import { CustomModal } from "@components/CustomModal";
-import { useState,  } from "react";
-import {useRouter} from 'next/router'
+import { useState } from "react";
+import { useRouter } from "next/router";
 import { SignUp } from "@/src/api/post-services";
 
 export default function Register() {
   const { t } = useTranslation();
 
-  const router = useRouter()
+  const router = useRouter();
   const onFinish = (values) => {
-    SignUp(values).then((res) => console.log("res", res)).then(()=>router.push("/login"));
+    SignUp(values)
+      .then((res) => console.log("res", res))
+      .then(() => router.push("/login"));
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -94,11 +96,11 @@ export default function Register() {
           dependencies={["password"]}
           hasFeedback
           rules={[
-            // {
-            //   required: true,
-            //   message: t(`common:pleaseInputPassword`),
-            // },
-            // ,
+            {
+              required: true,
+              message: t(`common:pleaseInputPassword`),
+            },
+
             ({ getFieldValue }) => ({
               validator(_, value) {
                 if (!value || getFieldValue("password") === value) {
