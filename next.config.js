@@ -33,4 +33,7 @@ module.exports = {
   //   ],
   // },
   i18n,
-}
+  // time in seconds of no pages generating during static
+  // generation before timing out
+  staticPageGenerationTimeout: 20000,
+};
