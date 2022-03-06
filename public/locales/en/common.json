@@ -1,5 +1,14 @@
 {
     "createAccount": "Create user account",
     "forgotPassword": "Forgot password?",
-    "next": "Next"
+    "next": "Next",
+    "search": "Search",
+    "login": "Login",
+
+    "register": "Create a new account",
+    "pleaseInputUsername": "Please input your user name!",
+    "pleaseInputEmail": "Please input your email address!",
+    "termsOfUses": "Terms of Uses",
+    "privacyPolicy": "Privacy Policy",
+    "acceptPrivacy": "I have read and agree to the "
 }

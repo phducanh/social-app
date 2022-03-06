@@ -1,16 +1,15 @@
 import React from "react";
 import { Layout } from "antd";
+import { CustomHeader } from "@components/CustomHeader";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Content } = Layout;
 
 export const LayoutAll = ({ children }) => {
   return (
     <>
       <Layout>
-        <Header>Header</Header>
-        <Content>{children}</Content>
-        
-        <Footer>Footer</Footer>
+        <CustomHeader />
+        <Content className="pl-2 pt-3">{children}</Content>
       </Layout>
     </>
   );

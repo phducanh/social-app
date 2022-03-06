@@ -1,0 +1,52 @@
+{
+    "search" : "Tìm kiếm",
+    "notification": "Thông báo",
+    "login" : "Đăng nhập",
+
+    "createAccount": "Tạo tài khoản mới",
+    "register": "Tạo tài khoản",
+    "pleaseInputUsername": "Hãy nhập user name của bạn!",
+    "pleaseInputEmail": "Hãy nhập địa chỉ email của bạn!",
+    "termsOfUses": "Điều khoản sử dụng",
+    "privacyPolicy": "Chính sách bảo mật",
+    "acceptPrivacy": "Tôi đã đọc và đồng ý với ",
+
+    "forgotPassword": "Quên mật khẩu?",
+    "forgotPassword2": "Quên mật khẩu",
+    "sentPwdConfirm": "Link reset password đã được gửi tới email",
+    "checkMail": "Hãy kiểm tra mail của bạn.",
+    "didnotReceive": "Chưa nhận được link?",
+    "resend": "Gửi lại",
+    "next": "Tiếp theo",
+    "willSend":"Chúng tôi sẽ gửi URL reset password",
+    "willSend2":"Hãy nhập địa chỉ email đã đăng ký COINSON",
+    "yourEmailAddress": "Địa chỉ email của bạn",
+    "password":"Mật khẩu",
+    "currentPassword":"Mật khẩu hiện tại",
+    "confirmPassword":"Xác nhận lại mật khẩu",
+    "pleaseInputPassword": "Hãy nhập mật khẩu của bạn!",
+    "changePassword": "Đổi mật khẩu",
+    "passwordReseted": "Đổi mật khẩu thành công.",
+    "layout" : {
+        "newFeed" : "Bảng tin",
+        "account" : "Tài khoản",
+        "createGroup" : "Tạo nhóm",
+        "yourGroup":"Nhóm do bạn quản lý",
+        "joinedGroup": "Nhóm đã tham gia",
+        "suggestedGroup" : "Nhóm được gợi ý",
+        "like" : "Hữu ích",
+        "unlike" : "Không hữu ích",
+        "comment" : "Bình luận",
+        "reply" : "Phản hồi",
+        "addComment" : "Viết bình luận...",
+        "lastActivation" : "Lần hoạt động gần nhất: "
+    },
+    "time":{
+        "minute":"phút",
+        "hour":"giờ",
+        "day":"ngày",
+        "week":"tuần",
+        "month":"tháng",
+        "year":"năm"
+    }
+}
