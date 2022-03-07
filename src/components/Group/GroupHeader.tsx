@@ -4,11 +4,15 @@ import { calculateActiveTime } from "@utils/common";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { QuestionModal } from "./QuestionModal";
+import {ConfirmBill} from "./Payment/ConfirmBill";
+import {UpgradeMember} from "./Payment/UpgradeMember";
+import {DonateModal} from "./Payment/DonateModal";
 import {
-  CloseCircleOutlined,
+  BellOutlined,
   PlusOutlined,
   LogoutOutlined,
   CrownOutlined,
+  StarOutlined
 } from "@ant-design/icons";
 
 const question = [
@@ -54,32 +58,77 @@ const privacy_types = [
   },
 ];
 
+const payment = [
+  { id: 1, name: "MasterCard", number: "1111111111111111", default: true },
+  {
+    id: 2,
+    name: "MetaMask",
+    number: "0x6b804b05B2cbC3dABFfB2b1EbA945C1b675b16b6",
+  },
+  { id: 3, name: "Momo", number: "0335229871" },
+];
+
+const userData = {
+  user_name: "duyen",
+  member_type: "",
+  user_coins: 1000,
+  payment: payment,
+}
+
+
 export const GroupHeader = (props) => {
   const { data } = props;
   const { t } = useTranslation();
 
   const [showQuesModal, setShowQuesModal] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [showDonateModal, setShowDonateModal] = useState(false);
+
+  const joinGroup = () => {
+    setShowQuesModal(true);
+  };
+
+  const upgradeMember = () => {
+    setShowUpgradeModal(true);
+  }
+
+  const donate = () => {
+    setShowDonateModal(true);
+  }
 
   const menu = () => {
     return (
-      <Menu>
-        <Menu.Item key="0" icon={<CloseCircleOutlined />}>
-          Bỏ theo dõi
+      <Menu
+        className="px-2"
+      >
+        <Menu.Item key="0" icon={<BellOutlined />}
+          className="h-[] text-base"
+        >
+          Quản lý thông báo
         </Menu.Item>
-        <Menu.Item key="1" icon={<LogoutOutlined />}>
+        <Menu.Item key="1" icon={<StarOutlined />}
+          className="text-base"
+          onClick={upgradeMember}
+        >
+          Thăng hạng thành viên
+        </Menu.Item>
+        <hr />
+        <Menu.Item key="2" icon={<LogoutOutlined />}
+          className="text-base"
+        >
           Rời khỏi nhóm
         </Menu.Item>
       </Menu>
     );
   };
 
-  const joinGroup = () => {
-    setShowQuesModal(true);
-  };
 
   return (
     <div aria-label="Group Header" className="bg-[transparent] w-full">
       {showQuesModal && <QuestionModal setShow={setShowQuesModal} question={question} groupData={data} />}
+      {showDonateModal && <DonateModal setShow={setShowDonateModal} userData={userData} groupData={data} />}
+      {showUpgradeModal && <UpgradeMember setShow={setShowUpgradeModal} userData={userData} groupData={data} />}
+
       <div className="">
         <div aria-label="Ảnh bìa" className="container mx-auto h-[300px] mb-3">
           <img
@@ -179,7 +228,7 @@ export const GroupHeader = (props) => {
                   <Dropdown overlay={menu} trigger={["click"]}>
                     <div
                       aria-label="Join button"
-                      className="w-1/2 flex justify-start w-[155px] rounded-lg bg-[#C6FAF0] hover:bg-[#3BDEC1]"
+                      className="w-1/2 flex justify-start w-[155px] rounded-lg bg-[#C6FAF0] hover:bg-[#3BDEC1] cursor-pointer"
                     >
                       <div
                         aria-label="icon"
@@ -258,6 +307,7 @@ export const GroupHeader = (props) => {
             <Button
               icon={<CrownOutlined />}
               className="mx-auto text-lg w-[150px] h-[40px] font-bold rounded-3xl bg-[#C6FAF0] hover:bg-[#3BDEC1]"
+              onClick={donate}
             >
               <span className="text-[]">Donate</span>
             </Button>
