@@ -71,7 +71,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/index.tsx", "pages/login/index.tsx"  ],
+, "pages/index.jsx", "pages/login/index.tsx", "utils/blockchain.js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -4,18 +4,7 @@ import { CheckboxQues } from "@components/Group/Question/CheckboxQues";
 import { RatioQues } from "@components/Group/Question/RatioQues";
 import { TextQues } from "@components/Group/Question/TextQues";
 
-import {
-  Form,
-  Select,
-  InputNumber,
-  Switch,
-  Radio,
-  Slider,
-  Button,
-  Upload,
-  Rate,
-  Checkbox,
-} from "antd";
+import { Form, Select, Button } from "antd";
 
 const { Option } = Select;
 

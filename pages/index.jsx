@@ -3,14 +3,14 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useCallback, useState } from "react";
 import { useRouter } from "next/router";
 import { getWeb3 } from "@utils/getWeb3";
-import SimpleStorage from "../constant/ABI/GroupFactory.json";
+import GroupFactory from "../constant/ABI/GroupFactory.json";
 import { HeadTag } from "@components/Layout/Head";
 import { CustomMenu } from "@components/Layout/CustomMenu";
 import { YourGroup } from "@components/Group/YourGroup";
 import { JoinedGroup } from "@components/Group/JoinedGroup";
 import { SuggestedGroup } from "@components/Group/SuggestedGroup";
 import GetData from "@hooks/useSWRCustom";
-import Auth from "@/pages/auth";
+import { useBlockchainFunc } from "@utils/blockchain";
 
 import { Post } from "@components/Post";
 import { Row, Col } from "antd";
@@ -35,31 +35,16 @@ const Home = () => {
 
   const [value, setValue] = useState(0);
 
+  // const { createGroup, getDeployedGroups } = useBlockchainFunc();
+
   useEffect(() => {
     GetData("http://localhost:4000").then((res) => console.log("data", res));
   }, []);
 
-  const fetchMyAPI = useCallback(async () => {
-    const web3 = await getWeb3();
-
-    const account = await web3.eth.getAccounts();
-    const networkId = await web3.eth.net.getId();
-
-    // const deployedNet = SimpleStorage.networks[networkId];
-    const SSContract = new web3.eth.Contract(
-      SimpleStorage.abi
-      // deployedNet && deployedNet.address
-    );
-
-    // await SSContract.methods.set(5).send({from: account[0]})
-    // const newVal = await SSContract.methods.getDeployedGroups().call();
-
-    console.log("NewVal", SSContract);
-    // setValue(newVal);
-  }, []);
-
-  useEffect(() => {
-    fetchMyAPI();
+  useEffect(async () => {
+    // const check = await getDeployedGroups();
+    // console.log(check, "check thui");
+    console.log("check ham", useBlockchainFunc());
   }, []);
   return (
     <>
