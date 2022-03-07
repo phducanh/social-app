@@ -93,6 +93,8 @@ const group = {
   posts: posts,
   member: "63,6K",
   members: members,
+  member_fee: 2000,
+  vip_fee: 15000,
 };
 
 export default function Group() {
