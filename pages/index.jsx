@@ -35,16 +35,13 @@ const Home = () => {
 
   const [value, setValue] = useState(0);
 
-  // const { createGroup, getDeployedGroups } = useBlockchainFunc();
+  const { createGroup, getDeployedGroups } = useBlockchainFunc();
 
-  useEffect(() => {
-    GetData("http://localhost:4000").then((res) => console.log("data", res));
-  }, []);
 
   useEffect(async () => {
-    // const check = await getDeployedGroups();
-    // console.log(check, "check thui");
-    console.log("check ham", useBlockchainFunc());
+    const check = await getDeployedGroups();
+    console.log(check, "check thui");
+    // console.log("check ham", await getDeployedGroups());
   }, []);
   return (
     <>
