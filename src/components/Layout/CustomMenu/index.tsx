@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Tabs } from "antd";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -112,7 +112,6 @@ export const CustomMenu = (props) => {
         >
           <div aria-label="Create group" className="bg-[] flex justify-center">
             <div className="flex justify-center bg-[] w-[300px]">
-              {console.log(active)}
               <div
                 aria-label="icon"
                 className={`rounded-full  h-[30px] w-[30px] grid place-items-center ${

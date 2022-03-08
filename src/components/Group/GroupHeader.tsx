@@ -4,36 +4,36 @@ import { calculateActiveTime } from "@utils/common";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { QuestionModal } from "./QuestionModal";
-import {ConfirmBill} from "./Payment/ConfirmBill";
-import {UpgradeMember} from "./Payment/UpgradeMember";
-import {DonateModal} from "./Payment/DonateModal";
+import { ConfirmBill } from "./Payment/ConfirmBill";
+import { UpgradeMember } from "./Payment/UpgradeMember";
+import { DonateModal } from "./Payment/DonateModal";
 import {
   BellOutlined,
   PlusOutlined,
   LogoutOutlined,
   CrownOutlined,
-  StarOutlined
+  StarOutlined,
 } from "@ant-design/icons";
 
 const question = [
   {
     id: 1,
-    question: "Ban biet gi khong (Chon 1)",
+    question: "Chọn loại member",
     type: "ratio",
-    answer: ["Khong", "Co"],
+    answer: ["Viewer", "Member: 50.000 VNĐ/Tháng", "VIP: 100.000 VNĐ/Tháng"],
   },
-  {
-    id: 2,
+  // {
+  //   id: 2,
 
-    question: "Ban biet gi khong (Chon nhieu)",
-    type: "checkbox",
-    answer: ["1", "2", "3"],
-  },
+  //   question: "Ban biet gi khong (Chon nhieu)",
+  //   type: "checkbox",
+  //   answer: ["1", "2", "3"],
+  // },
 
   {
     id: 3,
 
-    question: "Ban biet gi khong (Tra loi bang text)",
+    question: "Bạn sẽ tuân thủ nội quy nhóm chứ?",
     type: "text",
     answer: [""],
   },
@@ -73,8 +73,7 @@ const userData = {
   member_type: "",
   user_coins: 1000,
   payment: payment,
-}
-
+};
 
 export const GroupHeader = (props) => {
   const { data } = props;
@@ -85,49 +84,71 @@ export const GroupHeader = (props) => {
   const [showDonateModal, setShowDonateModal] = useState(false);
 
   const joinGroup = () => {
-    setShowQuesModal(true);
+    if (data) {
+      setShowQuesModal(true);
+    } else sendRequest();
+  };
+
+  const sendRequest = () => {
+    setJoined(true);
   };
 
   const upgradeMember = () => {
     setShowUpgradeModal(true);
-  }
+  };
 
   const donate = () => {
     setShowDonateModal(true);
-  }
+  };
+
+  const [joined, setJoined] = useState(false);
 
   const menu = () => {
     return (
-      <Menu
-        className="px-2"
-      >
-        <Menu.Item key="0" icon={<BellOutlined />}
-          className="h-[] text-base"
-        >
+      <Menu className="px-2">
+        <Menu.Item key="0" icon={<BellOutlined />} className="h-[] text-base">
           Quản lý thông báo
         </Menu.Item>
-        <Menu.Item key="1" icon={<StarOutlined />}
+        <Menu.Item
+          key="1"
+          icon={<StarOutlined />}
           className="text-base"
           onClick={upgradeMember}
         >
           Thăng hạng thành viên
         </Menu.Item>
         <hr />
-        <Menu.Item key="2" icon={<LogoutOutlined />}
-          className="text-base"
-        >
+        <Menu.Item key="2" icon={<LogoutOutlined />} className="text-base">
           Rời khỏi nhóm
         </Menu.Item>
       </Menu>
     );
   };
 
-
   return (
     <div aria-label="Group Header" className="bg-[transparent] w-full">
-      {showQuesModal && <QuestionModal setShow={setShowQuesModal} question={question} groupData={data} />}
-      {showDonateModal && <DonateModal setShow={setShowDonateModal} userData={userData} groupData={data} />}
-      {showUpgradeModal && <UpgradeMember setShow={setShowUpgradeModal} userData={userData} groupData={data} />}
+      {showQuesModal && !joined && (
+        <QuestionModal
+          setShow={setShowQuesModal}
+          question={question}
+          groupData={data}
+          sendRequest={sendRequest}
+        />
+      )}
+      {showDonateModal && (
+        <DonateModal
+          setShow={setShowDonateModal}
+          userData={userData}
+          groupData={data}
+        />
+      )}
+      {showUpgradeModal && (
+        <UpgradeMember
+          setShow={setShowUpgradeModal}
+          userData={userData}
+          groupData={data}
+        />
+      )}
 
       <div className="">
         <div aria-label="Ảnh bìa" className="container mx-auto h-[300px] mb-3">
@@ -218,54 +239,60 @@ export const GroupHeader = (props) => {
 
             <Col aria-label="join button" className="bg-[]" xs={24} xl={8}>
               <div className="bg-[] py-2 flex justify-end">
-                <div className="bg-[] w-3/4 flex justify-start">
-                  <Button
-                    className="h-full bg-[#3BDEC1] hover:bg-[#C6FAF0] rounded-lg"
-                    onClick={joinGroup}
-                  >
-                    Tham gia
-                  </Button>
-                  <Dropdown overlay={menu} trigger={["click"]}>
-                    <div
-                      aria-label="Join button"
-                      className="w-1/2 flex justify-start w-[155px] rounded-lg bg-[#C6FAF0] hover:bg-[#3BDEC1] cursor-pointer"
+                <div className="bg-[] w-3/4 flex justify-end">
+                  {!joined && (
+                    <Button
+                      className="h-full bg-[#3BDEC1] hover:bg-[#C6FAF0] rounded-lg"
+                      onClick={joinGroup}
                     >
+                      Tham gia
+                    </Button>
+                  )}
+
+                  {joined && (
+                    <Dropdown overlay={menu} trigger={["click"]}>
                       <div
-                        aria-label="icon"
-                        className="rounded-full h-[40px] w-[40px] grid place-items-center"
+                        aria-label="Join button"
+                        className="w-1/2 flex justify-start w-[155px] rounded-lg bg-[#C6FAF0] hover:bg-[#3BDEC1] cursor-pointer"
                       >
                         <div
                           aria-label="icon"
-                          className="bg-[] w-3/5 h-3/5 flex justify-center rounded-sm"
+                          className="rounded-full h-[40px] w-[40px] grid place-items-center"
                         >
-                          <img
-                            src="/images/icons/group-joined-fill.png"
-                            alt=""
-                          />
+                          <div
+                            aria-label="icon"
+                            className="bg-[] w-3/5 h-3/5 flex justify-center rounded-sm"
+                          >
+                            <img
+                              src="/images/icons/group-joined-fill.png"
+                              alt=""
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div
-                        aria-label="name"
-                        className="bg-[] grid place-items-center"
-                      >
-                        <span className="font-bold">Đã tham gia</span>
-                      </div>
-                      <div
-                        aria-label="icon"
-                        className="rounded-full h-[40px] w-[40px] grid place-items-center"
-                      >
+                        <div
+                          aria-label="name"
+                          className="bg-[] grid place-items-center"
+                        >
+                          <span className="font-bold">Đã tham gia</span>
+                        </div>
                         <div
                           aria-label="icon"
-                          className="bg-[] w-3/5 h-3/5 flex justify-center rounded-sm"
+                          className="rounded-full h-[40px] w-[40px] grid place-items-center"
                         >
-                          <img
-                            src="/images/icons/arrow-drop-down-fill.png"
-                            alt=""
-                          />
+                          <div
+                            aria-label="icon"
+                            className="bg-[] w-3/5 h-3/5 flex justify-center rounded-sm"
+                          >
+                            <img
+                              src="/images/icons/arrow-drop-down-fill.png"
+                              alt=""
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Dropdown>
+                    </Dropdown>
+                  )}
+
                   <div aria-label="Invite button" className="bg-[] w-1/3">
                     <div className="bg-[] ml-3 w-1/2 h-full">
                       <Button

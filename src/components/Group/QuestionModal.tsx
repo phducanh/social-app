@@ -9,7 +9,7 @@ import { Form, Select, Button } from "antd";
 const { Option } = Select;
 
 export const QuestionModal = (props) => {
-  const { groupData, question, setShow } = props;
+  const { groupData, question, setShow, sendRequest } = props;
 
   const formItemLayout = {
     labelCol: {
@@ -19,6 +19,7 @@ export const QuestionModal = (props) => {
 
   const submitForm = (e) => {
     console.log("first", e);
+    sendRequest()
   };
   return (
     <Modal visible={true} footer={null} closable={false}>

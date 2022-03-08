@@ -38,6 +38,7 @@ const Home = () => {
   const { createGroup, getDeployedGroups } = useBlockchainFunc();
 
 
+
   useEffect(async () => {
     const check = await getDeployedGroups();
     console.log(check, "check thui");
