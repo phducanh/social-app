@@ -239,10 +239,15 @@ export const GroupHeader = (props) => {
 
             <Col aria-label="join button" className="bg-[]" xs={24} xl={8}>
               <div className="bg-[] py-2 flex justify-end">
-                <div className="bg-[] w-3/4 flex justify-end">
+                <div className="bg-[] flex justify-end">
+                  <Button className="h-full bg-amber-400 hover:bg-amber-500 rounded-lg mr-3">
+                    <span className="font-bold bg-[] text-neutral-600">
+                      Chuyển tiền thành viên
+                    </span>
+                  </Button>
                   {!joined && (
                     <Button
-                      className="h-full bg-[#3BDEC1] hover:bg-[#C6FAF0] rounded-lg"
+                      className="h-full bg-[#3BDEC1] hover:bg-[#C6FAF0] rounded-lg font-bold"
                       onClick={joinGroup}
                     >
                       Tham gia
@@ -273,7 +278,9 @@ export const GroupHeader = (props) => {
                           aria-label="name"
                           className="bg-[] grid place-items-center"
                         >
-                          <span className="font-bold">Đã tham gia</span>
+                          <span className="font-bold w-24 text-center">
+                            Đã tham gia
+                          </span>
                         </div>
                         <div
                           aria-label="icon"

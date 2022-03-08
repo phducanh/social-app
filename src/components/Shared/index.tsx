@@ -16,17 +16,9 @@ export const Shared = (props) => {
   const { title } = props;
   const { t } = useTranslation();
   const user = getUserInfo();
-  const [privacy, setPrivacy] = useState(undefined);
-  const [group_type, setGroup_type] = useState(undefined);
   const [showPostModal, setShowPostModal] = useState(false);
 
-  const changePrivacy = (value) => {
-    setPrivacy(value);
-  };
 
-  const changeGroup_type = (value) => {
-    setGroup_type(value);
-  };
 
   return (
     <div
@@ -37,6 +29,7 @@ export const Shared = (props) => {
         <PostModal
           sendRequest={() => setShowPostModal(false)}
           user={user.user}
+          setShow={setShowPostModal}
         />
       )}
       <div className="flex justify-start">
