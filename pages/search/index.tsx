@@ -21,7 +21,7 @@ const Home = () => {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    GetData("http://localhost:4000").then((res) => console.log("data", res));
+    // GetData("http://localhost:4000").then((res) => console.log("data", res));
     const search = router.query.search || "";
     const user = getUserInfo();
     SearchGroup({ search: search }, user).then((res) => {
@@ -29,11 +29,14 @@ const Home = () => {
       let allGroups = res.data?.groups.map((group) => {
         return <SearchGroupItem key={group.id} group={group} />;
       });
-      console.log("all", allGroups)
+      console.log("all", allGroups);
 
       setGroups(allGroups || []);
     });
   }, [router.query.search]);
+  useEffect(() => {
+    console.log("chay render");
+  }, [groups]);
 
   return (
     <>
