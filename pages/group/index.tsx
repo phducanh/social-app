@@ -4,6 +4,8 @@ import { Form, Input, Button, Checkbox, Select } from "antd";
 import Link from "next/link";
 import { CustomModal } from "@components/CustomModal";
 import { PreviewGroup } from "@components/Group/PreviewGroup";
+import { TopAuthorList } from "@components/Group/TopBoard/TopAuthorList";
+import { useRouter } from "next/router";
 import { GroupHeader } from "@components/Group/GroupHeader";
 import { useState } from "react";
 import { Shared } from "@components/Shared";
@@ -99,7 +101,8 @@ const group = {
 
 export default function Group() {
   const { t } = useTranslation();
-
+  const router = useRouter();
+  console.log("gr id", router.query)
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -111,7 +114,7 @@ export default function Group() {
     <div>
       <Row className="justify-between">
         <Col span={5} aria-label="side bar" className="bg-[] border-r">
-          <div className="bg-[blue] mx-auto overflow-auto">
+          <div className="bg-gray-300 mx-auto overflow-auto">
             <CustomMenu />
             <YourGroup title={t(`common:layout.yourGroup`)} />
             <JoinedGroup title={t(`common:layout.joinedGroup`)} />
@@ -164,6 +167,9 @@ export default function Group() {
                   <div aria-label="general info" className="grid gap-4">
                     <div aria-label="Preview group" className="">
                       <PreviewGroup data={group} />
+                    </div>
+                    <div aria-label="Top author" className="">
+                      <TopAuthorList data={group} />
                     </div>
                   </div>
                 </Col>

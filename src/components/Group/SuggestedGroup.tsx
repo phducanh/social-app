@@ -61,7 +61,7 @@ export const SuggestedGroup = (props) => {
                 <Row className="bg-gray pb-2">
                   <Col lg={6} className="h-12 w-12 rounded-md mr-2">
                     <img
-                      className="h-full w-full"
+                      className="h-12 w-12 rounded-full object-cover"
                       src={item?.images}
                       alt="group-logo"
                     />

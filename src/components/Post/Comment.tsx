@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 
 const author = {
   id: "xkzckzxckkzxcz",
-  name: "Duc Anh",
+  name: "Hậu Nguyễn",
   image:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/2048px-User_icon_2.svg.png",
 };

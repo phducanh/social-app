@@ -5,25 +5,24 @@ import { useTranslation } from "next-i18next";
 
 const group = [
   {
-    name: "CFE Du An",
+    name: "Cùng nhau học Lý",
     lastActive: 1644371112445,
-    id: "ajsjjxjcjjjxxx",
+    id: "ajsjjxj22cjjjxxx",
     images:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/149px-Picture_icon_BLACK.svg.png",
+      "https://media.istockphoto.com/vectors/blackboard-inscribed-with-scientific-formulas-and-calculations-in-vector-id936903524?k=20&m=936903524&s=612x612&w=0&h=2gzychnTuwV8BSmtmJ4avgX1wKu0I8-wQmUcXi0McIY=",
   },
   {
-    name: "CFE Du An 2",
+    name: "Hội Build PC Hà Nội",
     lastActive: 1644071112445,
-    id: "ajsjjxjcjjjxxx",
-    images:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/149px-Picture_icon_BLACK.svg.png",
+    id: "ajsjjxjcjjjxxxxx",
+    images: "https://m.media-amazon.com/images/I/51oUz+Uo3nL._AC_SS450_.jpg",
   },
   {
-    name: "CFE Du An 3",
+    name: "Truyện Tranh Hay",
     lastActive: 1640371112445,
-    id: "ajsjjxjcjjjxxx",
+    id: "ajsjjxjcjjzjxxx",
     images:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/149px-Picture_icon_BLACK.svg.png",
+      "https://kenh14cdn.com/203336854389633024/2021/9/3/photo-1-16306417221131994914891.jpg",
   },
 ];
 
@@ -61,7 +60,7 @@ export const YourGroup = (props) => {
                 <Row className="bg-gray pb-2">
                   <Col lg={6} className="h-12 w-12 rounded-md mr-2">
                     <img
-                      className="h-full w-full"
+                      className="h-12 w-12 rounded-full object-cover"
                       src={item?.images}
                       alt="group-logo"
                     />

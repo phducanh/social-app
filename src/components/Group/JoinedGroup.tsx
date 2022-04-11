@@ -12,18 +12,17 @@ const group = [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/149px-Picture_icon_BLACK.svg.png",
   },
   {
-    name: "CFE Du An 2",
+    name: "Hội đam mê Dream",
     lastActive: 1644071112445,
     id: "ajsjjxjcjjjxxx",
-    images:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/149px-Picture_icon_BLACK.svg.png",
+    images: "https://cf.shopee.vn/file/a46648eb507d528e6dd3d70bbd185cd5",
   },
   {
-    name: "CFE Du An 3",
+    name: "Truyện hay",
     lastActive: 1640371112445,
     id: "ajsjjxjcjjjxxx",
     images:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/149px-Picture_icon_BLACK.svg.png",
+      "https://media.istockphoto.com/vectors/01open-book-and-creative-paper-airplanes-teamwork-paper-art-style-vector-id1189849703?k=20&m=1189849703&s=612x612&w=0&h=ViTOSts22Be3PJY0HD_2dLSF31VE5BgD0Sm7ZB96DQ8=",
   },
 ];
 
@@ -61,7 +60,7 @@ export const JoinedGroup = (props) => {
                 <Row className="bg-gray pb-2">
                   <Col lg={6} className="h-12 w-12 rounded-md mr-2">
                     <img
-                      className="h-full w-full"
+                      className="h-12 w-12 rounded-full object-cover"
                       src={item?.images}
                       alt="group-logo"
                     />

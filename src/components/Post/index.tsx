@@ -6,7 +6,7 @@ import { Comment } from "@components/Post/Comment";
 
 const author = {
   id: "xkzckzxckkzxcz",
-  name: "Duc Anh",
+  name: "Hậu Nguyễn",
   image:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/2048px-User_icon_2.svg.png",
 };
@@ -15,7 +15,7 @@ const comment = [
   {
     id: "askdkkxckzkxczxc",
     ownerId: "aksdkasldasllasd",
-    ownerName: "Hậu duệ mặt giời",
+    ownerName: "Hậu Nguyễn",
     content: "Ok nhi 💅",
     postedAt: 159939403044,
   },
@@ -46,7 +46,7 @@ export const Post = (props) => {
                 </Link>{" "}
                 {">"}{" "}
                 <Link href={`/group?id=`}>
-                  <a className="font-bold">{author?.name}</a>
+                  <a className="font-bold">{"Khoảnh khắc đẹp"}</a>
                 </Link>
               </div>
               <div className="text-gray-500 text-[11px] font-bold">

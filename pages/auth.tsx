@@ -3,7 +3,12 @@ import { useRouter } from "next/router";
 
 import { store } from "@/reducer/store";
 
-const withoutAuth = ["/login", "/register", "/forgot-password"];
+const withoutAuth = [
+  "/login",
+  "/register",
+  "/forgot-password",
+  "/reset-password",
+];
 
 export default function Auth({ children }) {
   const router = useRouter();

@@ -111,7 +111,7 @@ export const CustomMenu = (props) => {
           }`}
         >
           <div aria-label="Create group" className="bg-[] flex justify-center">
-            <div className="flex justify-center bg-[] w-[300px]">
+            <div className="flex justify-center bg-[]">
               <div
                 aria-label="icon"
                 className={`rounded-full  h-[30px] w-[30px] grid place-items-center ${

@@ -37,8 +37,6 @@ const Home = () => {
 
   const { createGroup, getDeployedGroups } = useBlockchainFunc();
 
-
-
   useEffect(async () => {
     const check = await getDeployedGroups();
     console.log(check, "check thui");
@@ -47,19 +45,23 @@ const Home = () => {
   return (
     <>
       <HeadTag />
-      <Row>
-        <Col className="">
-          <CustomMenu />
-          <YourGroup title={t(`common:layout.yourGroup`)} />
-          <JoinedGroup title={t(`common:layout.joinedGroup`)} />
-        </Col>
-        <Col flex={2} className="mx-auto ">
-          <div className="post-container w-[700px] mx-auto">
-            <Post data={post} />
-          </div>
-        </Col>
-        <Col className="">
-          <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
+      <Row justify={`center`}>
+        <Col>
+          <Row>
+            <Col className="mr-8">
+              <CustomMenu />
+              <YourGroup title={t(`common:layout.yourGroup`)} />
+              <JoinedGroup title={t(`common:layout.joinedGroup`)} />
+            </Col>
+            <Col className="mx-auto ">
+              <div className="post-container w-[700px] mx-auto">
+                <Post data={post} />
+              </div>
+            </Col>
+            <Col className="ml-8">
+              <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
+            </Col>
+          </Row>
         </Col>
       </Row>
     </>

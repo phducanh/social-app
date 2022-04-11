@@ -25,11 +25,10 @@ export default function Login() {
     SignIn(values)
       .then((res) => {
         console.log("respo", res);
-        if(res.success) {
+        if (res.success) {
           dispatch(setUserInfo(res));
-          router.push("/")
+          router.push("/");
         }
-        
       })
       .catch(() => {
         dispatch(clearUserInfo());

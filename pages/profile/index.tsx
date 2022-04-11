@@ -53,29 +53,33 @@ export default function Profile() {
   return (
     <>
       <HeadTag />
-      <Row>
-        <Col className="">
-          <CustomMenu />
-          <YourGroup title={t(`common:layout.yourGroup`)} />
-          <JoinedGroup title={t(`common:layout.joinedGroup`)} />
-        </Col>
-        <Col flex={2} className="mx-auto ">
-          <div className="post-container h-full w-[700px] mx-auto bg-white px-4">
-            <Tabs className="h-full" defaultActiveKey="1">
-              <TabPane tab={t(`profile:linkCard`)} key={"link-account"}>
-                <LinkCard data={walletData} />
-              </TabPane>
-              <TabPane
-                tab={t(`profile:manageCoinWallet`)}
-                key={"manage-wallet"}
-              >
-                <ManageWallet data={coinWallet} />
-              </TabPane>
-            </Tabs>
-          </div>
-        </Col>
-        <Col className="">
-          <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
+      <Row justify={`center`}>
+        <Col>
+          <Row>
+            <Col className="mr-8">
+              <CustomMenu />
+              <YourGroup title={t(`common:layout.yourGroup`)} />
+              <JoinedGroup title={t(`common:layout.joinedGroup`)} />
+            </Col>
+            <Col flex={2} className="mx-auto ">
+              <div className="post-container h-full w-[700px] mx-auto bg-white px-4">
+                <Tabs className="h-full" defaultActiveKey="1">
+                  <TabPane tab={t(`profile:linkCard`)} key={"link-account"}>
+                    <LinkCard data={walletData} />
+                  </TabPane>
+                  <TabPane
+                    tab={t(`profile:manageCoinWallet`)}
+                    key={"manage-wallet"}
+                  >
+                    <ManageWallet data={coinWallet} />
+                  </TabPane>
+                </Tabs>
+              </div>
+            </Col>
+            <Col className="ml-8">
+              <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
+            </Col>
+          </Row>
         </Col>
       </Row>
     </>

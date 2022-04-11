@@ -25,7 +25,6 @@ const Home = () => {
     const search = router.query.search || "";
     const user = getUserInfo();
     SearchGroup({ search: search }, user).then((res) => {
-      console.log(res, "group found");
       let allGroups = res.data?.groups.map((group) => {
         return <SearchGroupItem key={group.id} group={group} />;
       });
@@ -41,17 +40,22 @@ const Home = () => {
   return (
     <>
       <HeadTag />
-      <Row>
-        <Col className="">
-          <CustomMenu />
-          <YourGroup title={t(`common:layout.yourGroup`)} />
-          <JoinedGroup title={t(`common:layout.joinedGroup`)} />
-        </Col>
-        <Col flex={2} className="mx-auto ">
-          <div className="post-container w-[700px] mx-auto">{groups}</div>
-        </Col>
-        <Col className="">
-          <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
+
+      <Row justify={`center`}>
+        <Col>
+          <Row>
+            <Col className="mr-8">
+              <CustomMenu />
+              <YourGroup title={t(`common:layout.yourGroup`)} />
+              <JoinedGroup title={t(`common:layout.joinedGroup`)} />
+            </Col>
+            <Col flex={2} className="mx-auto ">
+              <div className="post-container w-[700px] mx-auto">{groups}</div>
+            </Col>
+            <Col className="ml-8">
+              <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
+            </Col>
+          </Row>
         </Col>
       </Row>
     </>
