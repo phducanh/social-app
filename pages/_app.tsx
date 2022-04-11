@@ -17,17 +17,15 @@ const persistor = persistStore(store);
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <LayoutAll>
-            <Auth>
-              <Component {...pageProps} />
-            </Auth>
-          </LayoutAll>
-        </PersistGate>
-      </Provider>
-    </>
+    <Provider store={store}>
+      <PersistGate persistor={persistor} loading={<>Loading</>}>
+        <LayoutAll>
+          <Auth>
+            <Component {...pageProps} />
+          </Auth>
+        </LayoutAll>
+      </PersistGate>
+    </Provider>
   );
 }
 

@@ -25,9 +25,13 @@ export const CustomHeader = (props) => {
   };
 
   const handleLogout = () => {
-    LogOut(auth).then((res) => {
-      dispatch(clearUserInfo());
-    });
+    LogOut(auth)
+      .then((res) => {
+        dispatch(clearUserInfo());
+      })
+      .finally(() => {
+        router.push("/login");
+      });
   };
   const handleOnChangeText = (e) => {
     setTextSearch(e.target.value);

@@ -44,6 +44,15 @@ export const CreateGroup = (data, user)=>{
     return axios.post(`${API_BASE_URL}/groups`,data, {headers: headers} ).then(res => res.data).catch(err=>console.log("Data fetching error"));
 }
 
+export const JoinGroup = (groupId, user)=>{
+    const headers = {
+        "Access-Control-Allow-Origin" : "*",
+        "Content-type": "Application/json",
+        "Authorization": user?.token
+        } 
+    return axios.post(`${API_BASE_URL}/groups/${groupId}/request`,groupId, {headers: headers} ).then(res => res.data).catch(err=>console.log("Data fetching error"));
+}
+
 
 export const ResetPassword = (data)=>{
     return axios.post(`${API_BASE_URL}/users/forgot-password`,data ).then(res => res.data).catch(err=>console.log("Data fetching error"));
