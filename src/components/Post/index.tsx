@@ -1,8 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import { Image, Row, Col, Button, Input } from "antd";
+import { Image, Row, Col, Input } from "antd";
 import { useTranslation } from "next-i18next";
 import { Comment } from "@components/Post/Comment";
+import Button from "@/src/components/CustomButton/Button";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
 const author = {
   id: "xkzckzxckkzxcz",
@@ -22,12 +24,14 @@ const comment = [
 ];
 
 export const Post = (props) => {
-  const { data } = props;
+  const { data, id } = props;
   const { t } = useTranslation();
 
   const submitComment = (e) => {
     console.log(e.target.value);
   };
+
+  const toggleLike = (postId) => {};
 
   return (
     <div className="bg-white p-4 rounded-xl">
@@ -70,13 +74,17 @@ export const Post = (props) => {
       <div className="interact-section">
         <Row>
           <Col>
-            <Button className="bg-primary">
-              {t(`common:layout.like`)} {data.like}
+            <Button size="xs" variant="outline">
+              {/* {t(`common:layout.like`)} */}
+              {data.like}
+              <LikeOutlined className="flex items-center" />
             </Button>
           </Col>
           <Col className="ml-3">
-            <Button>
-              {t(`common:layout.unlike`)} {data.dislike}
+            <Button size="xs" variant="outline" color="red">
+              {/* {t(`common:layout.unlike`)} */}
+              {data.dislike}
+              <DislikeOutlined className="flex items-center" />
             </Button>{" "}
           </Col>
           <Col flex={1} className="text-right font-bold text-gray-400">
@@ -84,7 +92,7 @@ export const Post = (props) => {
           </Col>
         </Row>
         <Row className="mt-3">
-          <Col>
+          <Col className="flex items-center">
             <img
               src={author?.image}
               alt="user-img"
@@ -93,7 +101,7 @@ export const Post = (props) => {
           </Col>
           <Col flex={1} className="ml-3">
             <Input
-              className="rounded-3xl"
+              className="rounded-xl py-2"
               placeholder={t(`common:layout.addComment`)}
               onPressEnter={submitComment}
             ></Input>

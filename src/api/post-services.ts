@@ -84,3 +84,12 @@ export const UploadFile = (data, user)=>{
         } 
     return axios.post(`${API_BASE_URL}/upload`,data, {headers: headers} ).then(res => res.data).catch(err=>console.log("Data fetching error"));
 }
+
+export const ToggleLike = (data, user)=>{
+    const headers = {
+        "Access-Control-Allow-Origin" : "*",
+        "Content-type": "Application/json",
+        "Authorization": user?.token
+        } 
+    return axios.post(`${API_BASE_URL}/posts/${data.id}/toggleLike`,data, {headers: headers} ).then(res => res.data).catch(err=>console.log("Data fetching error"));
+}

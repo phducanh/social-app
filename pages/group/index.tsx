@@ -1,19 +1,14 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { Form, Input, Button, Checkbox, Select } from "antd";
-import Link from "next/link";
-import { CustomModal } from "@components/CustomModal";
 import { PreviewGroup } from "@components/Group/PreviewGroup";
 import { TopAuthorList } from "@components/Group/TopBoard/TopAuthorList";
 import { useRouter } from "next/router";
 import { GroupHeader } from "@components/Group/GroupHeader";
-import { useState } from "react";
+
 import { Shared } from "@components/Shared";
 import { Post } from "@components/Post";
 import { Row, Col } from "antd";
-import { YourGroup } from "@components/Group/YourGroup";
 import { CustomMenu } from "@components/Layout/CustomMenu";
-import { JoinedGroup } from "@components/Group/JoinedGroup";
 import { GroupTemplate } from "@components/Group/GroupTemplate";
 import { GROUP_TYPE } from "@/src/constants/common";
 
