@@ -54,7 +54,7 @@ export default function Button({
       case "blue":
         return ["blue", "white"];
       case "red":
-        return ["red", "black"];
+        return ["red", "white"];
       case "yellow":
         return ["yellow", "black"];
       case "green":
@@ -115,10 +115,10 @@ export default function Button({
             break;
           case "red":
             overrideClassNames.push(
-              `bg-red-400 text-black`,
-              `hover:bg-red-500 hover:text-black`,
+              `bg-red-400 text-white`,
+              `hover:bg-red-500 hover:text-white`,
               `active:bg-red-600`,
-              `disabled:bg-red-600 disabled:hover:bg-black-600`
+              `disabled:bg-red-600 disabled:hover:bg-white-600`
             );
             break;
           case "orange":
@@ -183,7 +183,7 @@ export default function Button({
           case "red":
             overrideClassNames.push(
               `text-red-500 border border-red-500`,
-              `hover:bg-red-500 hover:text-black`,
+              `hover:bg-red-500 hover:text-white`,
               `active:bg-red-600`,
               `disabled:bg-red-600 disabled:hover:bg-red-600`
             );

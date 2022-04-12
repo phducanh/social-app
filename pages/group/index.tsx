@@ -8,9 +8,7 @@ import { GroupHeader } from "@components/Group/GroupHeader";
 import { Shared } from "@components/Shared";
 import { Post } from "@components/Post";
 import { Row, Col } from "antd";
-import { CustomMenu } from "@components/Layout/CustomMenu";
-import { GroupTemplate } from "@components/Group/GroupTemplate";
-import { GROUP_TYPE } from "@/src/constants/common";
+import { GroupLayout } from "@/src/components/Layout/GroupLayout";
 
 const posts = [
   {
@@ -107,43 +105,20 @@ export default function Group() {
     console.log("Failed:", errorInfo);
   };
   return (
-    <div>
-      <Row className="justify-between">
-        <Col span={5} aria-label="side bar" className="bg-[] border-r">
-          <div className="bg-gray-300 mx-auto overflow-auto">
-            <CustomMenu />
-            <GroupTemplate type={GROUP_TYPE.OWNED_GROUP} className="mt-3"/>
-            <GroupTemplate type={GROUP_TYPE.JOINED_GROUP} className="mt-3"/>
-          </div>
-        </Col>
-
-        <Col span={18} aria-label="group" className="bg-[] grid gap-4">
+    <GroupLayout>
+      <div className="post-container mx-auto">
+        <Col aria-label="group" className="grid gap-4">
           <div
             aria-label="Group Header"
-            className="bg-[white] w-full pb-4 shadow-xl"
+            className="bg-[white] w-full pb-4 shadow-xl rounded-xl"
           >
-            <div
-              aria-label="Group Header"
-              className="mx-auto max-w-[950px] bg-[white]"
-            >
-              <div aria-label="group name and image" className="bg-[] w-full">
-                <div aria-label="group name and image" className="">
-                  <GroupHeader data={group} />
-                </div>
-              </div>
-            </div>
+            <GroupHeader data={group} />
           </div>
-          <div
-            aria-label="Xem nhóm"
-            className="mx-auto max-w-[950px] grid gap-4 bg-[]"
-          >
-            <div
-              aria-label="content of group"
-              className="bg-[] w-11/12 mx-auto"
-            >
-              <Row className="bg-[] ">
-                <Col aria-label="posts" span={14} className="bg-[]">
-                  <div aria-label="posts" className="bg-[] grid gap-4 mr-4">
+          <div aria-label="Xem nhóm" className="mx-auto w-full">
+            <div aria-label="content of group">
+              <Row className="">
+                <Col aria-label="posts" span={14} className="">
+                  <div aria-label="posts" className="grid gap-4 mr-4">
                     <div aria-label="Share something?" className="">
                       <Shared data={group} />
                     </div>
@@ -159,7 +134,7 @@ export default function Group() {
                   </div>
                 </Col>
 
-                <Col aria-label="general info" span={10} className="bg-[]">
+                <Col aria-label="general info" span={10} className="">
                   <div aria-label="general info" className="grid gap-4">
                     <div aria-label="Preview group" className="">
                       <PreviewGroup data={group} />
@@ -173,8 +148,8 @@ export default function Group() {
             </div>
           </div>
         </Col>
-      </Row>
-    </div>
+      </div>
+    </GroupLayout>
   );
 }
 

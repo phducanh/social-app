@@ -10,7 +10,7 @@ export const LinkCard = (props) => {
   const { t } = useTranslation();
 
   return (
-    <div className="bg-white p-4 text-base">
+    <div className="bg-white py-4 mb-3 text-base">
       {data.map((item) => (
         <Row className="mb-4 px-3 py-5 bg-gray-100 rounded-xl" key={item?.id}>
           <Col sm={4} lg={4}>

@@ -8,6 +8,8 @@ import { GroupTemplate } from "@components/Group/GroupTemplate";
 import { MemberList } from "@components/Group/MemberList";
 import { GROUP_TYPE } from "@/src/constants/common";
 import { Row, Col } from "antd";
+import { GroupLayout } from "@/src/components/Layout/GroupLayout";
+
 
 const post = {
   id: "iasjdjkaskjdjkkjkxcjzkczkjxzzc",
@@ -35,21 +37,9 @@ export default function Home() {
   return (
     <>
       <HeadTag />
-      <Row>
-        <Col className="">
-          <CustomMenu />
-          <GroupTemplate type={GROUP_TYPE.OWNED_GROUP} className="mt-3" />
-          <GroupTemplate type={GROUP_TYPE.JOINED_GROUP} className="mt-3" />
-        </Col>
-        <Col flex={2} className="mx-auto ">
-          <div className="post-container w-[700px] mx-auto">
+      <GroupLayout><div className="post-container w-[700px] mx-auto">
             <MemberList t={t} />
-          </div>
-        </Col>
-        <Col className="">
-          <GroupTemplate type={GROUP_TYPE.SUGGESTED_GROUP} />
-        </Col>
-      </Row>
+          </div></GroupLayout>
     </>
   );
 }

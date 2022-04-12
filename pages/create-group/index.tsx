@@ -225,19 +225,19 @@ export default function Create_group() {
 
       <div
         aria-label="Xem trước tạo nhóm"
-        className="flex justify-center w-4/5 m-[5px] bg-[]"
+        className="flex justify-center w-4/5 m-[5px] "
       >
         <div
           aria-label="Xem trước bố cục trên máy tính"
           className="cursor-not-allowed overlay w-[900px] h-[680px] bg-[white] rounded-xl pt-[16px] pb-[10px] mx-[10px] "
         >
-          <div className=" m-[10px] bg-[] h-full mix-blend-luminosity">
+          <div className=" m-[10px]  h-full mix-blend-luminosity">
             <div className="mx-[20px] text-[16px] font-bold ">
               Xem trước bố cục trên máy tính
             </div>
 
-            <div className="bg-[] h-[580px]">
-              <div className="m-[10px] bg-[] h-full overflow-auto">
+            <div className=" h-[580px]">
+              <div className="m-[10px]  h-full overflow-auto">
                 <div aria-label="Group Header" className="pt-[10px] ">
                   <GroupHeader data={group} />
                 </div>

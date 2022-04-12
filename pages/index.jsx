@@ -8,6 +8,7 @@ import { GroupTemplate } from "@components/Group/GroupTemplate";
 import GetData from "@hooks/useSWRCustom";
 import { useBlockchainFunc } from "@utils/blockchain";
 import { GROUP_TYPE } from "@/src/constants/common";
+import { GroupLayout } from "@/src/components/Layout/GroupLayout";
 
 import { Post } from "@components/Post";
 import { Row, Col } from "antd";
@@ -42,25 +43,11 @@ const Home = () => {
   return (
     <>
       <HeadTag />
-      <Row justify={`center`}>
-        <Col>
-          <Row>
-            <Col className="mr-8">
-              <CustomMenu />
-              <GroupTemplate type={GROUP_TYPE.OWNED_GROUP} className="mt-3" />
-              <GroupTemplate type={GROUP_TYPE.JOINED_GROUP} className="mt-3" />
-            </Col>
-            <Col className="mx-auto ">
-              <div className="post-container w-[700px] mx-auto">
-                <Post data={post} />
-              </div>
-            </Col>
-            <Col className="ml-8">
-              <GroupTemplate type={GROUP_TYPE.SUGGESTED_GROUP} />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+      <GroupLayout>
+        <div className="post-container mx-auto">
+          <Post data={post} />
+        </div>
+      </GroupLayout>
     </>
   );
 };

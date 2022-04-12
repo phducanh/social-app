@@ -18,7 +18,7 @@ const persistor = persistStore(store);
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor} loading={<>Loading</>}>
+      <PersistGate persistor={persistor}>
         <LayoutAll>
           <Auth>
             <Component {...pageProps} />

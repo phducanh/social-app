@@ -13,6 +13,7 @@ import GetData from "@hooks/useSWRCustom";
 import { SearchGroup } from "@/src/api/post-services";
 import { getUserInfo } from "@utils/common";
 import { GROUP_TYPE } from "@/src/constants/common";
+import { GroupLayout } from "@/src/components/Layout/GroupLayout";
 
 import { Row, Col } from "antd";
 
@@ -41,27 +42,9 @@ const Home = () => {
   return (
     <>
       <HeadTag />
-
-      <Row justify={`center`}>
-        <Col>
-          <Row>
-            <Col className="mr-8">
-              <CustomMenu />
-              <GroupTemplate
-                type={GROUP_TYPE.OWNED_GROUP}
-                className="mt-3"
-              />
-              <GroupTemplate type={GROUP_TYPE.JOINED_GROUP} className="mt-3" />
-            </Col>
-            <Col flex={2} className="mx-auto ">
-              <div className="post-container w-[700px] mx-auto">{groups}</div>
-            </Col>
-            <Col className="ml-8">
-              <GroupTemplate type={GROUP_TYPE.SUGGESTED_GROUP} />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+      <GroupLayout>
+        <div className="post-container mx-auto w-full">{groups}</div>
+      </GroupLayout>
     </>
   );
 };

@@ -11,6 +11,7 @@ import { GroupTemplate } from "@components/Group/GroupTemplate";
 import { LinkCard } from "@components/Profile/LinkCard";
 import { ManageWallet } from "@components/Profile/ManageWallet";
 import { GROUP_TYPE } from "@/src/constants/common";
+import { GroupLayout } from "@/src/components/Layout/GroupLayout";
 
 const { TabPane } = Tabs;
 
@@ -54,46 +55,34 @@ export default function Profile() {
   return (
     <>
       <HeadTag />
-      <Row justify={`center`}>
-        <Col>
-          <Row>
-            <Col className="mr-8">
-              <CustomMenu />
-              <GroupTemplate type={GROUP_TYPE.OWNED_GROUP} className="mt-3" />
-              <GroupTemplate type={GROUP_TYPE.JOINED_GROUP} className="mt-3" />
-            </Col>
-            <Col flex={2} className="mx-auto ">
-              <div className="post-container h-full w-[700px] mx-auto bg-white px-4 pt-3">
-                <Tabs className="h-full" defaultActiveKey="link-account">
-                  <TabPane
-                    tab={
-                      <span className="font-bold text-base">
-                        {t(`profile:linkCard`)}
-                      </span>
-                    }
-                    key={"link-account"}
-                  >
-                    <LinkCard data={walletData} />
-                  </TabPane>
-                  <TabPane
-                    tab={
-                      <span className="font-bold text-base">
-                        {t(`profile:manageCoinWallet`)}
-                      </span>
-                    }
-                    key={"manage-wallet"}
-                  >
-                    <ManageWallet data={coinWallet} />
-                  </TabPane>
-                </Tabs>
-              </div>
-            </Col>
-            <Col className="ml-8">
-              <GroupTemplate type={GROUP_TYPE.SUGGESTED_GROUP} />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+      <GroupLayout>
+        <div className="post-container bg-white px-4 pt-3 rounded-xl w-full">
+          <div className="bg-white p-4 rounded-xl">
+            <Tabs className="h-full" defaultActiveKey="link-account">
+              <TabPane
+                tab={
+                  <span className="font-bold text-base">
+                    {t(`profile:linkCard`)}
+                  </span>
+                }
+                key={"link-account"}
+              >
+                <LinkCard data={walletData} />
+              </TabPane>
+              <TabPane
+                tab={
+                  <span className="font-bold text-base">
+                    {t(`profile:manageCoinWallet`)}
+                  </span>
+                }
+                key={"manage-wallet"}
+              >
+                <ManageWallet data={coinWallet} />
+              </TabPane>
+            </Tabs>
+          </div>
+        </div>
+      </GroupLayout>
     </>
   );
 }

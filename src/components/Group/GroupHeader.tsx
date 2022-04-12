@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Row, Col, Button, Menu, Dropdown, message } from "antd";
+import { Row, Col, Menu, Dropdown, message } from "antd";
 import { calculateActiveTime } from "@utils/common";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
@@ -7,6 +7,8 @@ import { QuestionModal } from "./QuestionModal";
 import { ConfirmBill } from "./Payment/ConfirmBill";
 import { UpgradeMember } from "./Payment/UpgradeMember";
 import { DonateModal } from "./Payment/DonateModal";
+import Button from "@/src/components/CustomButton/Button";
+
 import {
   BellOutlined,
   PlusOutlined,
@@ -106,19 +108,27 @@ export const GroupHeader = (props) => {
   const menu = () => {
     return (
       <Menu className="px-2">
-        <Menu.Item key="0" icon={<BellOutlined />} className="h-[] text-base">
+        <Menu.Item
+          key="0"
+          icon={<BellOutlined className="flex items-center" />}
+          className="h-[] text-base"
+        >
           Quản lý thông báo
         </Menu.Item>
         <Menu.Item
           key="1"
-          icon={<StarOutlined />}
+          icon={<StarOutlined className="flex items-center" />}
           className="text-base"
           onClick={upgradeMember}
         >
           Thăng hạng thành viên
         </Menu.Item>
         <hr />
-        <Menu.Item key="2" icon={<LogoutOutlined />} className="text-base">
+        <Menu.Item
+          key="2"
+          icon={<LogoutOutlined className="flex items-center" />}
+          className="text-base"
+        >
           Rời khỏi nhóm
         </Menu.Item>
       </Menu>
@@ -150,7 +160,7 @@ export const GroupHeader = (props) => {
         />
       )}
 
-      <div className="">
+      <div>
         <div aria-label="Ảnh bìa" className="container mx-auto h-[300px] mb-3">
           <img
             height={"100%"}
@@ -161,18 +171,12 @@ export const GroupHeader = (props) => {
                 : data?.cover_image
             }
             alt="background-group"
-            className="h-full rounded-b-xl"
+            className="h-full rounded-t-xl"
           />
         </div>
 
-        <div aria-label="Tên nhóm">
-          <div
-            className="text-2xl font-bold"
-            hidden={data?.name !== undefined ? true : false}
-          >
-            Tên nhóm
-          </div>
-          <div className="text-2xl font-bold">{data?.name}</div>
+        <div aria-label="Tên nhóm" className="px-3">
+          <div className="text-2xl font-bold">{data?.name || `Tên nhóm`}</div>
           <div aria-label="Thông tin chung" className="flex justify-start mt-3">
             <div
               aria-label="default"
@@ -208,14 +212,14 @@ export const GroupHeader = (props) => {
         <div
           aria-label="Member in Group Header"
           hidden={data?.members === undefined ? true : false}
-          className="bg-[] p-2 h-[]"
+          className=" p-2 h-[]"
         >
           <Row>
-            <Col aria-label="avatar member" className="bg-[]" xs={24} xl={16}>
-              <div className="bg-[] p-2 flex justify-start">
+            <Col aria-label="avatar member" className="" xs={24} xl={16}>
+              <div className=" p-2 flex justify-start">
                 <div
                   aria-label="avatar member"
-                  className="bg-[] flex -space-x-1 overflow-hidden"
+                  className=" flex -space-x-1 overflow-hidden"
                 >
                   {data?.members?.slice(0, 11).map((item) => {
                     return (
@@ -230,24 +234,25 @@ export const GroupHeader = (props) => {
                 </div>
                 <div
                   hidden={data?.members?.length < 12 ? true : false}
-                  className="bg-[] font-bold m-4 mx-2 text-md text-[#3BDEC1]"
+                  className=" font-bold m-4 mx-2 text-md text-[#3BDEC1]"
                 >
                   + {data?.member?.length - 12} other
                 </div>
               </div>
             </Col>
 
-            <Col aria-label="join button" className="bg-[]" xs={24} xl={8}>
-              <div className="bg-[] py-2 flex justify-end">
-                <div className="bg-[] flex justify-end">
-                  <Button className="h-full bg-amber-400 hover:bg-amber-500 rounded-lg mr-3">
-                    <span className="font-bold bg-[] text-neutral-600">
+            <Col aria-label="join button" className="" xs={24} xl={8}>
+              <div className=" py-2 flex justify-end">
+                <div className=" flex justify-end">
+                  <Button size="xs" color="yellow" className="h-full mr-3">
+                    <span className="font-bold  text-neutral-600">
                       Chuyển tiền thành viên
                     </span>
                   </Button>
                   {!joined && (
                     <Button
-                      className="h-full bg-[#3BDEC1] hover:bg-[#C6FAF0] rounded-lg font-bold"
+                      size="xs"
+                      className="h-full bg-[#3BDEC1] rounded-lg font-bold"
                       onClick={joinGroup}
                     >
                       Tham gia
@@ -266,7 +271,7 @@ export const GroupHeader = (props) => {
                         >
                           <div
                             aria-label="icon"
-                            className="bg-[] w-3/5 h-3/5 flex justify-center rounded-sm"
+                            className=" w-3/5 h-3/5 flex justify-center rounded-sm"
                           >
                             <img
                               src="/images/icons/group-joined-fill.png"
@@ -276,7 +281,7 @@ export const GroupHeader = (props) => {
                         </div>
                         <div
                           aria-label="name"
-                          className="bg-[] grid place-items-center"
+                          className=" grid place-items-center"
                         >
                           <span className="font-bold w-24 text-center">
                             Đã tham gia
@@ -288,7 +293,7 @@ export const GroupHeader = (props) => {
                         >
                           <div
                             aria-label="icon"
-                            className="bg-[] w-3/5 h-3/5 flex justify-center rounded-sm"
+                            className=" w-3/5 h-3/5 flex justify-center rounded-sm"
                           >
                             <img
                               src="/images/icons/arrow-drop-down-fill.png"
@@ -300,15 +305,13 @@ export const GroupHeader = (props) => {
                     </Dropdown>
                   )}
 
-                  <div aria-label="Invite button" className="bg-[] w-1/3">
-                    <div className="bg-[] ml-3 w-1/2 h-full">
+                  <div aria-label="Invite button" className=" w-1/3">
+                    <div className=" ml-3 w-1/2 h-full">
                       <Button
-                        icon={<PlusOutlined />}
-                        className="h-full bg-[#3BDEC1] hover:bg-[#C6FAF0] rounded-lg"
+                        size="xs"
+                        icon={<PlusOutlined className="flex items-center" />}
                       >
-                        <span className="font-bold bg-[] text-[black]">
-                          Mời
-                        </span>
+                        <span className="font-bold">Mời</span>
                       </Button>
                     </div>
                   </div>
@@ -325,25 +328,27 @@ export const GroupHeader = (props) => {
         <hr className="my-[10px]" />
 
         <div aria-label="Group Navbar" className="flex justify-start">
-          <div className="bg-[] w-3/4">
-            <Button type="text" className="font-bold">
+          <div className="flex">
+            <Button variant="text" className="font-bold">
               Giới thiệu
             </Button>
-            <Button type="text" className="font-bold">
+            <Button variant="text" className="font-bold">
               Thảo luận
             </Button>
-            <Button type="text" className="font-bold">
+            <Button variant="text" className="font-bold">
               Xem thêm
             </Button>
           </div>
 
-          <div className="bg-[] w-1/4 flex justify-center">
+          <div className="flex items-center justify-end w-full pr-3">
             <Button
-              icon={<CrownOutlined />}
-              className="mx-auto text-lg w-[150px] h-[40px] font-bold rounded-3xl bg-[#C6FAF0] hover:bg-[#3BDEC1]"
+              size="xs"
+              color="orange"
+              className="ml-auto text-lg w-[150px] h-[40px]"
               onClick={donate}
             >
-              <span className="text-[]">Donate</span>
+              <CrownOutlined className="flex items-center" />
+              <span>Ủng hộ</span>
             </Button>
           </div>
         </div>

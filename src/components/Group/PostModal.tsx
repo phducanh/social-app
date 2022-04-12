@@ -2,7 +2,10 @@ import React from "react";
 import { Modal } from "antd";
 import { FileImageOutlined } from "@ant-design/icons";
 
-import { Form, Button, Input } from "antd";
+import { Form, Input } from "antd";
+import Button from "@/src/components/CustomButton/Button";
+import { CloseOutlined } from "@ant-design/icons";
+
 const { TextArea } = Input;
 
 export const PostModal = (props) => {
@@ -19,16 +22,32 @@ export const PostModal = (props) => {
     sendRequest();
   };
   return (
-    <Modal visible={true} footer={null} closable={false}>
+    <Modal
+      visible={true}
+      footer={null}
+      // closable={false}
+      className="rounded"
+      closeIcon={
+        <Button
+          size="xs"
+          className="mt-3"
+          color="red"
+          type="button"
+          onClick={() => setShow(false)}
+        >
+          <CloseOutlined />
+        </Button>
+      }
+    >
       <div className="">
-        <div className="header font-bold text-lg mb-5">Đăng bài viết</div>
+        <div className="header font-extrabold text-xl mb-5">Đăng bài viết</div>
         <div className="info flex">
           <img
             src={user.avatar}
             alt="user-avatar"
             className="w-10 h-10 object-cover rounded-full"
           ></img>
-          <div className="font-bold ml-3">{user.fullName}</div>
+          <div className="font-bold ml-3 text-base">{user.fullName}</div>
         </div>
         <div className="question-container mt-5">
           <Form
@@ -42,36 +61,26 @@ export const PostModal = (props) => {
               <TextArea
                 // value={value}
                 // onChange={onChange}
-                // placeholder=""
+                className="rounded-xl pt-2"
+                placeholder="Bạn đang nghĩ gì?"
                 autoSize={{ minRows: 3, maxRows: 15 }}
               />
             </Form.Item>
 
             <div className="flex justify-end mb-3">
               <Button
-                icon={<FileImageOutlined />}
-                className="rounded-3xl bg-[#C6FAF0]"
+                size="xs"
+                className="mt-2"
+                icon={<FileImageOutlined className="flex items-center" />}
               >
                 Ảnh/Video
               </Button>
             </div>
 
-            <Form.Item className="">
-              <div className="flex">
-                <Button
-                  htmlType="submit"
-                  className="ml-auto block rounded bg-primary text-white font-bold"
-                >
-                  Đăng
-                </Button>
-                <Button
-                  className="ml-3 rounded bg-red-400 font-bold"
-                  htmlType="button"
-                  onClick={() => setShow(false)}
-                >
-                  Huỷ
-                </Button>
-              </div>
+            <Form.Item className="mb-0">
+              <Button size="small" type="submit" className="w-full mt-1">
+                Chia sẻ
+              </Button>
             </Form.Item>
           </Form>
         </div>

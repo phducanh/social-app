@@ -20,31 +20,31 @@ export const SearchGroupItem = (props) => {
   };
 
   return (
-    <Row className="bg-white mb-4 py-4 px-6 rounded-xl">
-      <Col flex={1}>
+    <Row className="bg-white mb-4 py-4 px-6 rounded-xl w-full">
+      <Col md={20}>
         <Link href={`/group?groupId=${group._id}`}>
-          <Row>
-            <Col md={4} className="h-28 flex items-center mr-3">
+          <Row className="flex-nowrap">
+            <Col className="flex items-center mr-4">
               <img
                 src={group?.header}
                 alt="group-img"
-                className="h-24 w-24 block rounded-full object-cover"
+                className="block object-cover h-24 w-24 rounded-full"
               />
             </Col>
             <Col flex={1} className="flex flex-col justify-center">
               <div className="name font-bold text-xl">{group?.name}</div>
               <div className="info flex flex-wrap text-stone-400">
-                <div className="">{privacy}</div>
-                <div className="ml-3">
+                <div className="mr-3">{privacy}</div>
+                <div className="mr-3">
                   {group?.members.length}{" "}
                   {group?.members.length > 1 ? "Thành viên" : "Thành viên"}
                 </div>
-                <div className="text-primary ml-3 font-bold">
+                <div className="text-primary font-bold mr-3">
                   {postApproval}
                 </div>
                 {group?.fee.length > 0 && (
                   <img
-                    className="block ml-3"
+                    className="block"
                     src="/images/icons/money.svg"
                     alt="fee"
                   />
@@ -57,16 +57,8 @@ export const SearchGroupItem = (props) => {
       </Col>
       <Col md={4} className="flex items-center justify-end">
         {true && (
-          // <div
-          //   className="join-btn font-bold"
-          //   onClick={() => {
-          //     handleJoinGroup(group._id, user);
-          //   }}
-          // >
-          //   Tham gia
-          // </div>
           <Button
-            size="small"
+            size="xs"
             variant="primary"
             onClick={() => {
               handleJoinGroup(group._id, user);

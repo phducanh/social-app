@@ -37,7 +37,7 @@ export const CustomMenu = (props) => {
         >
           <div
             aria-label="News feed"
-            className="flex justify-start bg-[] rounded-lg"
+            className="flex justify-start  rounded-lg"
           >
             {console.log(active)}
             <div
@@ -48,15 +48,12 @@ export const CustomMenu = (props) => {
             >
               <div
                 aria-label="icon"
-                className="bg-[] w-3/5 h-3/5 flex justify-center rounded-sm"
+                className=" w-3/5 h-3/5 flex justify-center rounded-sm"
               >
                 <img src="/images/icons/news-feed-fill.png" alt="" />
               </div>
             </div>
-            <div
-              aria-label="name"
-              className="bg-[] mx-4 grid place-items-center"
-            >
+            <div aria-label="name" className=" mx-4 grid place-items-center">
               <span>{t(`common:layout.newFeed`)}</span>
             </div>
           </div>
@@ -68,10 +65,7 @@ export const CustomMenu = (props) => {
             active === 1 ? "bg-gray-100 " : ""
           }`}
         >
-          <div
-            aria-label="Profile"
-            className="flex justify-start bg-[] rounded-lg"
-          >
+          <div aria-label="Profile" className="flex justify-start  rounded-lg">
             <div
               aria-label="icon"
               className={`rounded-full  h-[40px] w-[40px] grid place-items-center ${
@@ -80,15 +74,12 @@ export const CustomMenu = (props) => {
             >
               <div
                 aria-label="icon"
-                className="bg-[] w-3/5 h-3/5 flex justify-center rounded-sm"
+                className=" w-3/5 h-3/5 flex justify-center rounded-sm"
               >
                 <img src="/images/icons/profile-fill.png" alt="" />
               </div>
             </div>
-            <div
-              aria-label="name"
-              className="bg-[] mx-4 grid place-items-center"
-            >
+            <div aria-label="name" className=" mx-4 grid place-items-center">
               <span>{t(`common:layout.account`)}</span>
             </div>
           </div>
