@@ -3,6 +3,7 @@ import { Tabs } from "antd";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Button from "@/src/components/CustomButton/Button";
 
 const { TabPane } = Tabs;
 
@@ -27,22 +28,11 @@ export const CustomMenu = (props) => {
     console.log(key);
   }
   return (
-    <div className="flex flex-col w-full bg-[white] grid">
-      {" "}
-      {/* <Tabs
-        defaultActiveKey="1"
-        tabPosition={"left"}
-        onChange={callback}
-        className="bg-white"
-      >
-        <TabPane tab={t(`common:layout.newFeed`)} key="1"></TabPane>
-        <TabPane tab={t(`common:layout.account`)} key="2"></TabPane>
-        <TabPane tab={t(`common:layout.createGroup`)} key="3"></TabPane>
-      </Tabs> */}
+    <div className="flex flex-col w-full bg-[white] grid px-2 pb-2 rounded-xl">
       <Link href={`/`}>
         <a
-          className={`p-2 m-1 bg-[white] hover:bg-[#DDDDDD] rounded-lg active:bg-[gray] text-base font-semibold ${
-            active === 0 ? "bg-[#DDDDDD] " : ""
+          className={`p-2 m-1 bg-[white] hover:bg-gray-100 rounded-lg active:bg-gray-100 text-base font-semibold ${
+            active === 0 ? "bg-gray-100 " : ""
           }`}
         >
           <div
@@ -74,8 +64,8 @@ export const CustomMenu = (props) => {
       </Link>
       <Link href={`/profile`}>
         <a
-          className={`p-2 m-1 bg-[white] hover:bg-[#DDDDDD] rounded-lg active:bg-[gray] text-base font-semibold ${
-            active === 1 ? "bg-[#DDDDDD] " : ""
+          className={`p-2 m-1 bg-[white] hover:bg-gray-100 rounded-lg active:bg-[gray] text-base font-semibold ${
+            active === 1 ? "bg-gray-100 " : ""
           }`}
         >
           <div
@@ -106,33 +96,17 @@ export const CustomMenu = (props) => {
       </Link>
       <Link href={`/create-group`}>
         <a
-          className={`p-1 m-1 m-1 bg-[#C6FAF0] hover:bg-[#DDDDDD] rounded-lg active:bg-[gray] text-base font-semibold ${
-            active === 2 ? "bg-[#DDDDDD] " : ""
-          }`}
+          className={`m-1 mt-3 rounded-lg active:bg-[gray] text-base font-semibold `}
         >
-          <div aria-label="Create group" className="bg-[] flex justify-center">
-            <div className="flex justify-center bg-[]">
-              <div
-                aria-label="icon"
-                className={`rounded-full  h-[30px] w-[30px] grid place-items-center ${
-                  active === 2 ? "bg-[#C6FAF0] " : "bg-[#DDDDDD]"
-                }`}
-              >
-                <div
-                  aria-label="icon"
-                  className="bg-[] w-3/5 h-3/5 flex justify-center rounded-sm"
-                >
-                  <img src="/images/icons/plus-fill.png" alt="" />
-                </div>
-              </div>
-              <div
-                aria-label="name"
-                className="bg-[] mx-4 grid place-items-center text-[#3399FF]"
-              >
-                <span>{t(`common:layout.createGroup`)}</span>
-              </div>
-            </div>
-          </div>
+          <Button
+            className="flex justify-center w-full"
+            size="small"
+            variant="primary"
+            type="submit"
+            color="green"
+          >
+            {t(`common:layout.createGroup`)}
+          </Button>
         </a>
       </Link>
     </div>

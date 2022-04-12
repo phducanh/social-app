@@ -1,9 +1,8 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Checkbox } from "antd";
 import Link from "next/link";
-import { CustomModal } from "@components/CustomModal";
-import { useState } from "react";
+import Button from "@/src/components/CustomButton/Button";
 import { useRouter } from "next/router";
 import { SignUp } from "@/src/api/post-services";
 
@@ -23,7 +22,7 @@ export default function Register() {
   return (
     <div className="register w-1/2  md:w-2/3 lg:w-[500px] mx-auto py-20 px-[65px] bg-[#F7F8FC] my-[10%]">
       <h1 className="text-center text-2xl font-bold text-[#3BDEC1] mb-16">
-        Create a new account
+        Tạo tài khoản mới
       </h1>
       <Form
         name="basic"
@@ -35,8 +34,11 @@ export default function Register() {
         autoComplete="off"
         layout="vertical"
       >
+        <label htmlFor="fullName" className="font-bold">
+          Tên người dùng
+        </label>
         <Form.Item
-          label="User name"
+          // label="Tên người dùng"
           name="fullName"
           rules={[
             {
@@ -48,12 +50,14 @@ export default function Register() {
           <Input
             type={"text"}
             className="px-4 py-2.5"
-            placeholder="User name"
+            placeholder="Tên người dùng"
           />
         </Form.Item>
-
+        <label htmlFor="email" className="font-bold">
+          Email
+        </label>
         <Form.Item
-          label="Email address"
+          // label="Email address"
           name="email"
           rules={[
             {
@@ -65,11 +69,11 @@ export default function Register() {
           <Input
             type={"email"}
             className="px-4 py-2.5"
-            placeholder="Your email address"
+            placeholder="Địa chỉ email"
           />
         </Form.Item>
 
-        <label htmlFor="password" className="">
+        <label htmlFor="password" className="font-bold">
           {t(`common:password`)}
         </label>
         <Form.Item
@@ -84,11 +88,11 @@ export default function Register() {
           <Input.Password
             type={"password"}
             className="px-4 py-2.5"
-            placeholder="Your password"
+            placeholder="Mật khẩu của bạn"
           />
         </Form.Item>
 
-        <label htmlFor="cf-password" className="">
+        <label htmlFor="cf-password" className="font-bold">
           {t(`common:confirmPassword`)}
         </label>
         <Form.Item
@@ -116,30 +120,40 @@ export default function Register() {
         >
           <Input.Password
             className="px-4 py-2.5"
-            placeholder="Confirm your password"
+            placeholder="Xác nhận mật khẩu"
           />
         </Form.Item>
 
         <Checkbox>
-          <p>
+          <p className="font-bold">
             {t(`common:acceptPrivacy`)}{" "}
             <Link href={`/terms-of-uses`}>
-              <a className="text-[#5770FF] ">{t(`common:termsOfUses`)}</a>
+              <a className="text-primary">{t(`common:termsOfUses`)}</a>
             </Link>{" "}
             &{" "}
             <Link href={`/terms-of-uses`}>
-              <a className="text-[#5770FF] ">{t(`common:privacyPolicy`)}</a>
+              <a className="text-primary">{t(`common:privacyPolicy`)}</a>
             </Link>
           </p>
         </Checkbox>
 
         <div className="flex justify-center mt-9 border-b mb-6">
           <Form.Item>
-            <button type="submit" className="bg-[#3BDEC1] py-2 px-11">
+            <Button
+              size="small"
+              variant="primary"
+              type="submit"
+              // onClick={() => {
+              //   // handleJoinGroup(group._id, user);
+              // }}
+            >
+              {t(`common:register`)}
+            </Button>
+            {/* <button type="submit" className="bg-[#3BDEC1] py-2 px-11">
               <span className="font-bold tracking-wider">
-                {t(`common:register`)}
+                
               </span>
-            </button>
+            </button> */}
           </Form.Item>
         </div>
       </Form>

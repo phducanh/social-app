@@ -1,16 +1,13 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { getWeb3 } from "@utils/getWeb3";
-import GroupFactory from "../constant/ABI/GroupFactory.json";
 import { HeadTag } from "@components/Layout/Head";
 import { CustomMenu } from "@components/Layout/CustomMenu";
-import { YourGroup } from "@components/Group/YourGroup";
-import { JoinedGroup } from "@components/Group/JoinedGroup";
-import { SuggestedGroup } from "@components/Group/SuggestedGroup";
+import { GroupTemplate } from "@components/Group/GroupTemplate";
 import GetData from "@hooks/useSWRCustom";
 import { useBlockchainFunc } from "@utils/blockchain";
+import { GROUP_TYPE } from "@/src/constants/common";
 
 import { Post } from "@components/Post";
 import { Row, Col } from "antd";
@@ -50,8 +47,8 @@ const Home = () => {
           <Row>
             <Col className="mr-8">
               <CustomMenu />
-              <YourGroup title={t(`common:layout.yourGroup`)} />
-              <JoinedGroup title={t(`common:layout.joinedGroup`)} />
+              <GroupTemplate type={GROUP_TYPE.OWNED_GROUP} className="mt-3" />
+              <GroupTemplate type={GROUP_TYPE.JOINED_GROUP} className="mt-3" />
             </Col>
             <Col className="mx-auto ">
               <div className="post-container w-[700px] mx-auto">
@@ -59,7 +56,7 @@ const Home = () => {
               </div>
             </Col>
             <Col className="ml-8">
-              <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
+              <GroupTemplate type={GROUP_TYPE.SUGGESTED_GROUP} />
             </Col>
           </Row>
         </Col>

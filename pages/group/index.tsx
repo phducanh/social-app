@@ -14,7 +14,8 @@ import { Row, Col } from "antd";
 import { YourGroup } from "@components/Group/YourGroup";
 import { CustomMenu } from "@components/Layout/CustomMenu";
 import { JoinedGroup } from "@components/Group/JoinedGroup";
-import { SuggestedGroup } from "@components/Group/SuggestedGroup";
+import { GroupTemplate } from "@components/Group/GroupTemplate";
+import { GROUP_TYPE } from "@/src/constants/common";
 
 const posts = [
   {
@@ -102,7 +103,7 @@ const group = {
 export default function Group() {
   const { t } = useTranslation();
   const router = useRouter();
-  console.log("gr id", router.query)
+  console.log("gr id", router.query);
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -116,8 +117,8 @@ export default function Group() {
         <Col span={5} aria-label="side bar" className="bg-[] border-r">
           <div className="bg-gray-300 mx-auto overflow-auto">
             <CustomMenu />
-            <YourGroup title={t(`common:layout.yourGroup`)} />
-            <JoinedGroup title={t(`common:layout.joinedGroup`)} />
+            <GroupTemplate type={GROUP_TYPE.OWNED_GROUP} className="mt-3"/>
+            <GroupTemplate type={GROUP_TYPE.JOINED_GROUP} className="mt-3"/>
           </div>
         </Col>
 

@@ -2,7 +2,9 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { store } from "@/reducer/store";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input } from "antd";
+import Button from "@/src/components/CustomButton/Button";
+
 import { CustomModal } from "@components/CustomModal";
 import { ChangePassword } from "@/src/api/post-services";
 
@@ -12,16 +14,16 @@ export default function Login() {
   const user = auth.data;
   const [showModal, setShowModal] = useState(false);
   const onFinish = (values) => {
-    ChangePassword(values, user).then(res=>{
-      if(res.success) {
-        console.log(res.data)
-        setShowModal(true);
-      }
-      
-    }).catch(err => {
-      console.log("Loi roi")
-    });
-    
+    ChangePassword(values, user)
+      .then((res) => {
+        if (res.success) {
+          console.log(res.data);
+          setShowModal(true);
+        }
+      })
+      .catch((err) => {
+        console.log("Loi roi");
+      });
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -101,11 +103,14 @@ export default function Login() {
         </Form.Item>
         <div className="flex justify-center mt-16">
           <Form.Item>
-            <button type="submit" className="bg-primary py-2 px-7">
+            {/* <button type="submit" className="bg-primary py-2 px-7">
               <span className="font-bold tracking-wider">
                 {t(`common:changePassword`)}
               </span>
-            </button>
+            </button> */}
+            <Button size="small" variant="primary" type="submit">
+              {t(`common:changePassword`)}
+            </Button>
           </Form.Item>
         </div>
       </Form>

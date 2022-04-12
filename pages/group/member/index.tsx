@@ -1,15 +1,12 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { HeadTag } from "@components/Layout/Head";
 import { CustomMenu } from "@components/Layout/CustomMenu";
-import { YourGroup } from "@components/Group/YourGroup";
-import { JoinedGroup } from "@components/Group/JoinedGroup";
-import { SuggestedGroup } from "@components/Group/SuggestedGroup";
+import { GroupTemplate } from "@components/Group/GroupTemplate";
 import { MemberList } from "@components/Group/MemberList";
-
-import { Post } from "@components/Post";
+import { GROUP_TYPE } from "@/src/constants/common";
 import { Row, Col } from "antd";
 
 const post = {
@@ -41,8 +38,8 @@ export default function Home() {
       <Row>
         <Col className="">
           <CustomMenu />
-          <YourGroup title={t(`common:layout.yourGroup`)} />
-          <JoinedGroup title={t(`common:layout.joinedGroup`)} />
+          <GroupTemplate type={GROUP_TYPE.OWNED_GROUP} className="mt-3" />
+          <GroupTemplate type={GROUP_TYPE.JOINED_GROUP} className="mt-3" />
         </Col>
         <Col flex={2} className="mx-auto ">
           <div className="post-container w-[700px] mx-auto">
@@ -50,7 +47,7 @@ export default function Home() {
           </div>
         </Col>
         <Col className="">
-          <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
+          <GroupTemplate type={GROUP_TYPE.SUGGESTED_GROUP} />
         </Col>
       </Row>
     </>

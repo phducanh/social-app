@@ -6,12 +6,13 @@ import { HeadTag } from "@components/Layout/Head";
 import { CustomMenu } from "@components/Layout/CustomMenu";
 import { YourGroup } from "@components/Group/YourGroup";
 import { JoinedGroup } from "@components/Group/JoinedGroup";
-import { SuggestedGroup } from "@components/Group/SuggestedGroup";
+import { GroupTemplate } from "@components/Group/GroupTemplate";
 import { SearchGroupItem } from "@components/Group/SearchGroupItem";
 
 import GetData from "@hooks/useSWRCustom";
 import { SearchGroup } from "@/src/api/post-services";
 import { getUserInfo } from "@utils/common";
+import { GROUP_TYPE } from "@/src/constants/common";
 
 import { Row, Col } from "antd";
 
@@ -46,14 +47,17 @@ const Home = () => {
           <Row>
             <Col className="mr-8">
               <CustomMenu />
-              <YourGroup title={t(`common:layout.yourGroup`)} />
-              <JoinedGroup title={t(`common:layout.joinedGroup`)} />
+              <GroupTemplate
+                type={GROUP_TYPE.OWNED_GROUP}
+                className="mt-3"
+              />
+              <GroupTemplate type={GROUP_TYPE.JOINED_GROUP} className="mt-3" />
             </Col>
             <Col flex={2} className="mx-auto ">
               <div className="post-container w-[700px] mx-auto">{groups}</div>
             </Col>
             <Col className="ml-8">
-              <SuggestedGroup title={t(`common:layout.suggestedGroup`)} />
+              <GroupTemplate type={GROUP_TYPE.SUGGESTED_GROUP} />
             </Col>
           </Row>
         </Col>

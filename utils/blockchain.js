@@ -65,8 +65,8 @@ export const useBlockchainFunc = () => {
     const getDeployedGroups = async (callback = Function()) => {
         const GroupContract = await fetchSC();
         console.log(GroupContract.methods, "method")
-        const res = await GroupContract.methods?.getDeployedGroups().call()
-        return res;
+        // const res = await GroupContract.methods?.getDeployedGroups().call()
+        return "check nay nay";
         // return "check 1"
     }
 

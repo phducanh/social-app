@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input } from "antd";
+import Button from "@/src/components/CustomButton/Button";
+
 import Link from "next/link";
 import { SignIn } from "@/src/api/post-services";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +18,8 @@ export default function Login() {
 
   const userInfo = useSelector((state: any) => state.auth);
 
+  const [errMsg, setErrMsg] = useState("");
+
   useEffect(() => {
     if (userInfo?.id) {
       router.push("/");
@@ -28,6 +32,8 @@ export default function Login() {
         if (res.success) {
           dispatch(setUserInfo(res));
           router.push("/");
+        } else {
+          setErrMsg(res?.reason);
         }
       })
       .catch(() => {
@@ -37,6 +43,9 @@ export default function Login() {
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+  };
+  const onChangeInput = () => {
+    setErrMsg("");
   };
   return (
     <div className="login w-1/2  md:w-2/3 lg:w-[500px] mx-auto py-20 px-[65px] bg-[#F7F8FC] my-[10%]">
@@ -48,25 +57,29 @@ export default function Login() {
         initialValues={{
           remember: true,
         }}
+        onChange={onChangeInput}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
         layout="vertical"
       >
+        <label htmlFor="email" className="font-bold">
+          Email
+        </label>
         <Form.Item
-          label="Email adress"
+          // label="Email"
           name="email"
           rules={[
             {
               required: true,
-              message: "Please input your email adress!",
+              message: t(`common:pleaseInputEmail`),
             },
           ]}
         >
           <Input className="px-4 py-2.5" />
         </Form.Item>
-        <label htmlFor="password" className="">
-          Password
+        <label htmlFor="password" className="font-bold">
+          Mật khẩu
         </label>
         <Form.Item
           name="password"
@@ -74,17 +87,20 @@ export default function Login() {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: "Hãy nhập mật khẩu của bạn!",
             },
           ]}
         >
           <Input.Password className="px-4 py-2.5" />
         </Form.Item>
         <Link href={`/forgot-password`}>
-          <a className="block text-[#5770FF] text-right">
+          <a className="block text-[#5770FF] text-right font-bold">
             {t(`common:forgotPassword`)}
           </a>
         </Link>
+        {errMsg !== "" && (
+          <div className="text-red-400 font-bold">{errMsg}</div>
+        )}
         <div className="flex justify-between mt-9  mb-6 border-[#E4E4E4] border-b items-center pb-6">
           <Link href={`/register`}>
             <a className="text-primary font-bold">
@@ -92,11 +108,19 @@ export default function Login() {
             </a>
           </Link>
           <Form.Item className="mb-0">
-            <button type="submit" className="bg-primary py-2 px-11">
+            {/* <button type="submit" className="bg-primary py-2 px-11">
               <span className="font-bold tracking-wider">
                 {t(`common:next`)}
               </span>
-            </button>
+            </button> */}
+
+            <Button
+              size="small"
+              variant="primary"
+              type="submit"
+            >
+              {t(`common:next`)}
+            </Button>
           </Form.Item>
         </div>
       </Form>

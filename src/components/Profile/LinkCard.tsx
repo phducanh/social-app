@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Row, Col, Button } from "antd";
+import { Row, Col } from "antd";
+import Button from "@/src/components/CustomButton/Button";
 import { useTranslation } from "next-i18next";
 import { convertLongString } from "@utils/common";
 
@@ -9,9 +10,9 @@ export const LinkCard = (props) => {
   const { t } = useTranslation();
 
   return (
-    <div className="bg-white p-4">
+    <div className="bg-white p-4 text-base">
       {data.map((item) => (
-        <Row className="mb-4" key={item?.id}>
+        <Row className="mb-4 px-3 py-5 bg-gray-100 rounded-xl" key={item?.id}>
           <Col sm={4} lg={4}>
             {item?.name === "MasterCard" && (
               <img
@@ -37,11 +38,11 @@ export const LinkCard = (props) => {
           </Col>
           <Col sm={4} lg={4} className="">
             <div className="font-bold">{item?.name}</div>
-            {item?.default && (
-              <div className="font-bold bg-primary/75 inline-flex px-3 rounded text-gray-500 text-xs">
+            {/* {item?.default && (
+              <div className="font-bold bg-primary/75 inline-flex px-3 rounded text-gray-600 text-xs py-1">
                 {t(`profile:default`)}
               </div>
-            )}
+            )} */}
           </Col>
           <Col sm={4} lg={10} className="">
             <span className="font-bold">
@@ -50,14 +51,17 @@ export const LinkCard = (props) => {
                 : item?.number}
             </span>
           </Col>
-          <Col flex={1} className="action text-right">
-            <Button className="bg-red-400 text-white">
+          <Col flex={1} className="action flex justify-end">
+            <Button size="xs" variant="primary" type="submit" color="orange">
               {t(`profile:removeCard`)}
             </Button>
           </Col>
         </Row>
       ))}
-      <Button className="mt-6 bg-primary/75 text-gray-500 font-bold">{t(`profile:addCard`)}</Button>
+
+      <Button size="small" variant="primary" type="submit">
+        {t(`profile:addCard`)}
+      </Button>
     </div>
   );
 };
