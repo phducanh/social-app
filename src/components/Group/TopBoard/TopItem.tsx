@@ -1,5 +1,11 @@
 import React from "react";
-import { Row, Col } from "antd";
+import { Menu, Dropdown, Row, Col } from "antd";
+import {
+  InfoCircleOutlined,
+  UserOutlined,
+  MinusCircleOutlined,
+} from "@ant-design/icons";
+import Button from "@/src/components/CustomButton/Button";
 
 export const TopItem = (props) => {
   const { data, index } = props;
@@ -16,32 +22,53 @@ export const TopItem = (props) => {
         return "bg-white";
     }
   };
+  function handleMenuClick(e) {
+    // message.info('Click on menu item.');
+    console.log("click", e);
+  }
+  const menu = (
+    <Menu onClick={handleMenuClick}>
+      <Menu.Item key="1" icon={<UserOutlined />}>
+        Xem thông tin
+      </Menu.Item>
+      {/* <Menu.Item key="2" icon={<UserOutlined />}>
+        Nhắn tin
+      </Menu.Item> */}
+      <Menu.Item key="3" icon={<MinusCircleOutlined />}>
+        Báo cáo
+      </Menu.Item>
+    </Menu>
+  );
 
   const colorClass = handleColor(index + 1);
 
   return (
     <Row
       className={`top-item ${colorClass} mb-3 p-3 shadow-xl`}
-      justify="center"
+      // justify="center"
     >
-      <Col className="avatar">
+      <Col sm={24} md={4} className="avatar">
         <img
           src={`${data.avatar}`}
           alt="user-avatar"
-          className="w-12 h-12 rounded-full object-contain"
+          className="w-10 h-10 rounded-full object-cover"
         />
       </Col>
-      <Col flex={1} className="flex items-center ml-3">
-        <span className="font-bold">
-          {data.fullName} - {data.totalLikes}{" "}
-          {data.totalLikes > 1 ? "likes" : "like"}
+      <Col sm={24} md={15} className="font-bold">
+        <span className="mr-3">{data.fullName}</span>
+        <span className="text-green-600 block">
+          {data.totalLikes} {data.totalLikes > 1 ? "likes" : "like"}
         </span>
       </Col>
-      <Col className="action flex items-center">
-        <img
-          src="https://cdn1.iconfinder.com/data/icons/web-and-user-interface-21/512/30-512.png"
-          className="h-4 w-4"
-        />
+      <Col flex={1} className="flex items-center justify-end">
+        <Dropdown overlay={menu}>
+          <Button
+            size="xs"
+            // icon={<PlusOutlined className="flex items-center" />}
+          >
+            <InfoCircleOutlined />
+          </Button>
+        </Dropdown>
       </Col>
     </Row>
   );

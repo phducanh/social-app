@@ -41,7 +41,7 @@ export const Post = (props) => {
             <img
               src={author.image}
               alt="author-img"
-              className="h-full bg-gray-400 rounded-full"
+              className="w-10 h-10 object-cover bg-gray-400 rounded-full"
             />
             <div className="ml-3">
               <div>
@@ -96,7 +96,7 @@ export const Post = (props) => {
             <img
               src={author?.image}
               alt="user-img"
-              className="h-8 bg-gray-400 rounded-full"
+              className="h-8 w-8 object-cover bg-gray-400 rounded-full"
             />
           </Col>
           <Col flex={1} className="ml-3">

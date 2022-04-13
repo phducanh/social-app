@@ -1,4 +1,4 @@
-import { Input } from "antd";
+import { Input, Row, Col } from "antd";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { FileImageOutlined } from "@ant-design/icons";
@@ -22,7 +22,7 @@ export const Shared = (props) => {
   return (
     <div
       aria-label="Shared"
-      className="shadow-xl bg-[white] w-full p-2 pb-3 mr-2 rounded-xl"
+      className="shadow-xl bg-[white] w-full p-3 mr-2 rounded-xl"
     >
       {showPostModal && (
         <PostModal
@@ -31,31 +31,29 @@ export const Shared = (props) => {
           setShow={setShowPostModal}
         />
       )}
-      <div className="flex justify-start">
-        <div
-          aria-label="Avatar user"
-          className="mr-[12px] mt-[10px] h-[36px] w-[36px]"
-        >
+      <Row className="w-full mb-2" align="middle" gutter={8}>
+        <Col>
           <img
-            src={author.image}
+            src={user.user.avatar}
             alt="author-img"
-            className="h-full bg-gray-400 rounded-full"
+            className="block max-w-full max-h-10 bg-primary rounded-full object-cover p-[1px]"
           />
-        </div>
-        <div className="w-full">
+        </Col>
+        <Col flex={1} className="flex items-center">
           <Input
             type={"text"}
             placeholder="Bạn đang nghĩ gì?"
-            className="placeholder:text-gray-500 rounded-xl w-full mt-[10px] py-3"
+            className="placeholder:text-gray-500 rounded-xl w-full py-3"
             onClick={() => setShowPostModal(true)}
           ></Input>
-          <hr className="my-[10px]" />
-          <div className="flex justify-start">
-            <Button size="xs" className="rounded-3xl bg-[#C6FAF0]">
-              <FileImageOutlined className="flex items-center"/>
-              Ảnh/Video
-            </Button>
-          </div>
+        </Col>
+      </Row>
+      <div className="">
+        <div className="w-full">
+          <Button size="xs" className="rounded-3xl bg-[#C6FAF0]">
+            <FileImageOutlined className="flex items-center" />
+            Ảnh/Video
+          </Button>
         </div>
       </div>
     </div>

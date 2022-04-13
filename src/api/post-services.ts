@@ -25,6 +25,10 @@ export const SignUp = (data)=>{
     return axios.post(`${API_BASE_URL}/users`, data).then(res => res.data).catch(err=>console.log("Data fetching error"));
 }
 
+export const VerifyUser = (data)=>{
+    return axios.post(`${API_BASE_URL}/users/verify-email?code=${data.code}&?id=${data.id}`, data).then(res => res.data).catch(err=>console.log("Data fetching error"));
+}
+
 export const LogOut = (user)=>{
     const data = {}
     const headers = {

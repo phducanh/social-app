@@ -1,6 +1,5 @@
-import Link from "next/link";
-import { Row, Col } from "antd";
-import { calculateActiveTime } from "@utils/common";
+import Button from "@/src/components/CustomButton/Button";
+
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { TopItem } from "./TopItem";
@@ -58,7 +57,13 @@ export const TopAuthorList = (props) => {
         {topAuthors.map((author, index) => (
           <TopItem data={author} key={author.id} index={index} />
         ))}
-        <div className="text-sky-300 font-medium mt-2">Xem thêm</div>
+        <Button
+          size="xs"
+          variant="text"
+          className="text-sky-300 font-medium mt-5"
+        >
+          Xem thêm
+        </Button>
       </div>
     </div>
   );

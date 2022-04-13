@@ -13,7 +13,7 @@ import {
   BellOutlined,
   PlusOutlined,
   LogoutOutlined,
-  CrownOutlined,
+  HeartFilled,
   StarOutlined,
 } from "@ant-design/icons";
 
@@ -347,7 +347,7 @@ export const GroupHeader = (props) => {
               className="ml-auto text-lg w-[150px] h-[40px]"
               onClick={donate}
             >
-              <CrownOutlined className="flex items-center" />
+              <HeartFilled className="flex items-center" />
               <span>Ủng hộ</span>
             </Button>
           </div>

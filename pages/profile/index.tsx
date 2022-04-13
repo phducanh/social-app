@@ -2,15 +2,9 @@ import { useEffect, useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { HeadTag } from "@components/Layout/Head";
-import { useRouter } from "next/router";
-import { Tabs, Row, Col } from "antd";
-import { CustomMenu } from "@components/Layout/CustomMenu";
-import { YourGroup } from "@components/Group/YourGroup";
-import { JoinedGroup } from "@components/Group/JoinedGroup";
-import { GroupTemplate } from "@components/Group/GroupTemplate";
+import { Tabs } from "antd";
 import { LinkCard } from "@components/Profile/LinkCard";
 import { ManageWallet } from "@components/Profile/ManageWallet";
-import { GROUP_TYPE } from "@/src/constants/common";
 import { GroupLayout } from "@/src/components/Layout/GroupLayout";
 
 const { TabPane } = Tabs;

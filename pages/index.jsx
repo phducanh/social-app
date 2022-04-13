@@ -3,15 +3,10 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { HeadTag } from "@components/Layout/Head";
-import { CustomMenu } from "@components/Layout/CustomMenu";
-import { GroupTemplate } from "@components/Group/GroupTemplate";
-import GetData from "@hooks/useSWRCustom";
 import { useBlockchainFunc } from "@utils/blockchain";
-import { GROUP_TYPE } from "@/src/constants/common";
 import { GroupLayout } from "@/src/components/Layout/GroupLayout";
 
 import { Post } from "@components/Post";
-import { Row, Col } from "antd";
 
 const post = {
   id: "iasjdjkaskjdjkkjkxcjzkczkjxzzc",

@@ -8,6 +8,7 @@ const withoutAuth = [
   "/register",
   "/forgot-password",
   "/reset-password",
+  "/verify-email",
 ];
 
 export default function Auth({ children }) {

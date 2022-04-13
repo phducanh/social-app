@@ -108,7 +108,7 @@ export const CustomHeader = (props) => {
               alt="user"
               className="w-4 object-contain"
             />
-            <span className="ml-1">{userInfo?.userInfo.fullName}</span>
+            <span className="ml-1">{userInfo?.userInfo?.fullName}</span>
           </a>
         </Dropdown>
       </>
@@ -127,13 +127,13 @@ export const CustomHeader = (props) => {
               />
             </Link>
           </Col>
-          <Col md={12} lg={10}>
+          <Col flex={1}>
             <Input
               name={`search-text`}
               onChange={handleOnChangeText}
               onPressEnter={onSearch}
               placeholder={t(`common:search`)}
-              className="h-[43px] rounded-3xl px-6"
+              className="h-[43px] rounded-xl px-6"
               value={textSearch}
             />
           </Col>

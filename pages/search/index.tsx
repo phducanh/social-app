@@ -3,16 +3,9 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { HeadTag } from "@components/Layout/Head";
-import { CustomMenu } from "@components/Layout/CustomMenu";
-import { YourGroup } from "@components/Group/YourGroup";
-import { JoinedGroup } from "@components/Group/JoinedGroup";
-import { GroupTemplate } from "@components/Group/GroupTemplate";
 import { SearchGroupItem } from "@components/Group/SearchGroupItem";
-
-import GetData from "@hooks/useSWRCustom";
 import { SearchGroup } from "@/src/api/post-services";
 import { getUserInfo } from "@utils/common";
-import { GROUP_TYPE } from "@/src/constants/common";
 import { GroupLayout } from "@/src/components/Layout/GroupLayout";
 
 import { Row, Col } from "antd";
@@ -25,6 +18,7 @@ const Home = () => {
   useEffect(() => {
     // GetData("http://localhost:4000").then((res) => console.log("data", res));
     const search = router.query.search || "";
+    console.log("que", router)
     const user = getUserInfo();
     SearchGroup({ search: search }, user).then((res) => {
       let allGroups = res.data?.groups.map((group) => {

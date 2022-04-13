@@ -1,6 +1,8 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { Form, Input, Button, Select } from "antd";
+import { Form, Input, Select } from "antd";
+import Button from "@/src/components/CustomButton/Button";
+
 import { CreateGroup } from "@/src/api/post-services";
 import { useRouter } from "next/router";
 import { store } from "@/reducer/store";
@@ -44,7 +46,10 @@ export default function Create_group() {
   const onFinish = (values) => {
     CreateGroup(values, auth.data).then((res) => {
       console.log(res.data);
-      router.push("/");
+      const data = res.data;
+      if (data.message === "Creat group success") {
+        router.push(`/group?groupId=${data.group._id}`);
+      }
     });
   };
 
@@ -210,13 +215,16 @@ export default function Create_group() {
             </Select>
           </Form.Item>
 
-          <div className="flex justify-center mt-9 border-b mb-6">
-            <Form.Item>
+          <div className="flex justify-center mt-9 mb-6 w-full">
+            <Form.Item className="w-full">
               <Button
-                className="rounded-3xl bg-[#C6FAF0] px-20 text-[#15705F] font-bold"
-                htmlType="submit"
+                className="flex justify-center w-full"
+                size="small"
+                variant="primary"
+                type="submit"
+                color="green"
               >
-                Tạo nhóm
+                {t(`common:layout.createGroup`)}
               </Button>
             </Form.Item>
           </div>
