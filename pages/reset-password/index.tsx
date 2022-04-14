@@ -1,15 +1,26 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
-import { store } from "@/reducer/store";
-import { Form, Input, Button, Checkbox } from "antd";
+import Button from "@/src/components/CustomButton/Button";
+import { useRouter } from "next/router";
+import { Form, Input, Checkbox } from "antd";
 import { CustomModal } from "@components/CustomModal";
-import { ChangePassword } from "@/src/api/post-services";
+import { PostResetPassword } from "@/src/api/post-services";
 
 export default function Login() {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
-  const onFinish = (values) => {};
+  const router = useRouter();
+  const onFinish = (values) => {
+    const { code, id } = router.query;
+    console.log("val", values, code);
+    PostResetPassword({ code, id, newPassword: values.newPassword }).then(
+      (res) => {
+        console.log("res", res);
+        setShowModal(true);
+      }
+    );
+  };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -19,7 +30,9 @@ export default function Login() {
       <h1 className="text-center text-2xl font-bold text-primary mb-16">
         {t(`common:changePassword`)}
       </h1>
-      {showModal && <CustomModal isSuccess={true} type="change-password" />}
+      {showModal && (
+        <CustomModal isSuccess={true} type="change-password-success" />
+      )}
       <Form
         name="basic"
         initialValues={{
@@ -30,7 +43,6 @@ export default function Login() {
         autoComplete="off"
         layout="vertical"
       >
-
         <label htmlFor="newPassword" className="">
           {t(`common:password`)}
         </label>
@@ -74,11 +86,11 @@ export default function Login() {
         </Form.Item>
         <div className="flex justify-center mt-16">
           <Form.Item>
-            <button type="submit" className="bg-primary py-2 px-7">
+            <Button size="small" type="submit" className="bg-primary py-2 px-7">
               <span className="font-bold tracking-wider">
                 {t(`common:changePassword`)}
               </span>
-            </button>
+            </Button>
           </Form.Item>
         </div>
       </Form>

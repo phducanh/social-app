@@ -62,6 +62,10 @@ export const ResetPassword = (data)=>{
     return axios.post(`${API_BASE_URL}/users/forgot-password`,data ).then(res => res.data).catch(err=>console.log("Data fetching error"));
 }
 
+export const PostResetPassword = (data)=>{
+    return axios.post(`${API_BASE_URL}/users/reset-password?code=${data.code}&id=${data.id}`,data ).then(res => res.data).catch(err=>console.log("Data fetching error"));
+}
+
 export const ChangePassword = (data, user)=>{
     const headers = {
         "Access-Control-Allow-Origin" : "*",

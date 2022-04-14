@@ -4,6 +4,7 @@ import { useTranslation } from "next-i18next";
 import { Form, Input } from "antd";
 import { ResetPassword } from "@/src/api/post-services";
 import { CustomModal } from "@components/CustomModal";
+import Button from "@/src/components/CustomButton/Button";
 
 export default function ForgotPassword() {
   const { t } = useTranslation();
@@ -23,7 +24,7 @@ export default function ForgotPassword() {
   };
   return (
     <div className="login w-1/2  md:w-2/3 lg:w-[500px] mx-auto py-20 px-[65px] bg-[#F7F8FC] my-[10%]">
-      {resetModal && <CustomModal type="change-password" isSuccess={true} />}
+      {resetModal && <CustomModal type="reset-password" isSuccess={true} />}
       <h1 className="text-center text-2xl font-bold text-primary mb-11">
         {t(`common:forgotPassword2`)}
       </h1>
@@ -58,11 +59,15 @@ export default function ForgotPassword() {
         </Form.Item>
         <div className="flex justify-center mt-[132px]">
           <Form.Item className="mb-5">
-            <button type="submit" className="bg-primary py-2.5 px-7">
+            <Button
+              size="small"
+              type="submit"
+              className="bg-primary py-2.5 px-7"
+            >
               <span className="font-bold tracking-wider">
                 {t(`common:next`)}
               </span>
-            </button>
+            </Button>
           </Form.Item>
         </div>
       </Form>

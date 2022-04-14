@@ -9,15 +9,29 @@ import { VerifyUser } from "@/src/api/post-services";
 
 const VerifyEmail = () => {
   const { t } = useTranslation();
-  const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState("");
+  const [errMsg, setErrMsg] = useState("");
   const router = useRouter();
+  const handleErr = (err) => {
+    switch (err) {
+      case "CODE_HAS_EXPIRED":
+        setErrMsg("Link đã hết hạn");
+        return;
+      default:
+        setErrMsg("Lỗi trong quá trình xác thực !");
+        return;
+    }
+  };
   useEffect(() => {
     const { code, id } = router.query;
     if (code) {
       VerifyUser({ code, id }).then((res) => {
         console.log("res", res);
         if (res.success) {
-          setIsVerified(true);
+          setIsVerified("confirmed");
+        } else {
+          setIsVerified("not-confirmed");
+          handleErr(res.reason);
         }
       });
     }
@@ -25,19 +39,40 @@ const VerifyEmail = () => {
     // .then(() => router.push("/login"));
   }, [router.query]);
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
   return (
-    <div className="register w-1/2  md:w-2/3 lg:w-[500px] mx-auto py-20 px-[65px] bg-[#F7F8FC] my-[10%]">
-      <h1 className="text-center text-2xl font-bold text-[#3BDEC1] mb-16">
+    <div className="register w-1/2  md:w-2/3 lg:w-[500px] mx-auto py-12 px-12 bg-[#F7F8FC] my-[10%]">
+      <h1 className="text-center text-2xl font-bold text-[#3BDEC1] mb-6">
         Xác minh tài khoản
       </h1>
-      {true && (
-        <div className="text-center font-bold">
+      {isVerified === "confirmed" ? (
+        <div className="text-center font-bold mb-2">
           Tài khoản được xác minh thành công
         </div>
+      ) : isVerified === "not-confirmed" ? (
+        <div className="text-center font-bold mb-2">
+          Tài khoản chưa được xác minh
+        </div>
+      ) : (
+        <></>
       )}
+      {errMsg !== "" && (
+        <div className="text-center font-bold mb-2 text-red-500">{errMsg}</div>
+      )}
+      <Link href={`/login`}>
+        <a
+          className={`m-1 mt-3 rounded-lg active:bg-[gray] text-base font-semibold `}
+        >
+          <Button
+            className="flex justify-center w-full"
+            size="small"
+            variant="primary"
+            type="submit"
+            color="green"
+          >
+            Đăng nhập
+          </Button>
+        </a>
+      </Link>
     </div>
   );
 };

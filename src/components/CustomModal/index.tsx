@@ -1,6 +1,7 @@
 import { Modal } from "antd";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import Button from "@/src/components/CustomButton/Button";
 
 export const CustomModal = (props) => {
   const { t } = useTranslation();
@@ -21,14 +22,25 @@ export const CustomModal = (props) => {
             {t(`common:passwordReseted`)}
           </div>
         )}
+        {type === "change-password-success" && (
+          <div className="text-lg font-bold text-center">
+            Đổi mật khẩu thành công
+          </div>
+        )}
+        {type === "reset-password" && (
+          <div className="text-lg font-bold text-center">
+            Kiểm tra email của bạn
+          </div>
+        )}
 
-        <button
+        <Button
           type="submit"
+          size="small"
           className="bg-primary mt-14 py-2 px-7 self-center"
           onClick={() => router.push("/login")}
         >
           <span className="font-bold tracking-wider">{t(`common:login`)}</span>
-        </button>
+        </Button>
       </div>
     </Modal>
   );

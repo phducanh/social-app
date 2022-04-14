@@ -91,10 +91,10 @@ export default function Button({
         switch (color) {
           case "green":
             overrideClassNames.push(
-              `bg-green-400 text-white`,
-              `hover:bg-green-500 hover:text-white`,
-              `active:bg-green-600`,
-              `disabled:bg-green-600 disabled:hover:bg-white-600`
+              `bg-emerald-500 text-white`,
+              `hover:bg-emerald-600 hover:text-white`,
+              `active:bg-emerald-700`,
+              `disabled:bg-emerald-700 disabled:hover:bg-white-600`
             );
             break;
           case "blue":

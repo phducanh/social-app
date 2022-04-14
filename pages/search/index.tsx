@@ -18,10 +18,10 @@ const Home = () => {
   useEffect(() => {
     // GetData("http://localhost:4000").then((res) => console.log("data", res));
     const search = router.query.search || "";
-    console.log("que", router)
     const user = getUserInfo();
     SearchGroup({ search: search }, user).then((res) => {
-      let allGroups = res.data?.groups.map((group) => {
+      console.log("res", res);
+      let allGroups = res?.data?.groups.map((group) => {
         return <SearchGroupItem key={group.id} group={group} />;
       });
       console.log("all", allGroups);
@@ -29,9 +29,6 @@ const Home = () => {
       setGroups(allGroups || []);
     });
   }, [router.query.search]);
-  useEffect(() => {
-    console.log("chay render");
-  }, [groups]);
 
   return (
     <>
