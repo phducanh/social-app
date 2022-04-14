@@ -1,13 +1,15 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import React, { useEffect, useState } from "react";
 import { PreviewGroup } from "@components/Group/PreviewGroup";
 import { TopAuthorList } from "@components/Group/TopBoard/TopAuthorList";
 import { useRouter } from "next/router";
 import { GroupHeader } from "@components/Group/GroupHeader";
-
+import { GetGroupInfo } from "@/src/api/post-services";
 import { Shared } from "@components/Shared";
 import { Post } from "@components/Post";
 import { Row, Col } from "antd";
+import { getUserInfo } from "@utils/common";
 import { GroupLayout } from "@/src/components/Layout/GroupLayout";
 
 const posts = [
@@ -96,23 +98,27 @@ const group = {
 export default function Group() {
   const { t } = useTranslation();
   const router = useRouter();
-  console.log("gr id", router.query);
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
+  const [groupData, setGroupData] = useState();
+  const user = getUserInfo();
+  useEffect(() => {
+    if (router.query.groupId) {
+      GetGroupInfo({ id: router.query.groupId }, user).then((res) => {
+        console.log(res.data);
+        setGroupData(res.data);
+        document.title = res.data.name || "Group";
+      });
+    }
+  }, [router.query.groupId]);
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
   return (
     <GroupLayout>
       <div className="post-container mx-auto">
         <Col aria-label="group" className="grid gap-4">
           <div
             aria-label="Group Header"
-            className="bg-[white] w-full pb-4 shadow-xl rounded-xl"
+            className="bg-[white] w-full shadow-xl rounded-xl"
           >
-            <GroupHeader data={group} />
+            <GroupHeader data={groupData} />
           </div>
           <div aria-label="Xem nhóm" className="mx-auto w-full">
             <div aria-label="content of group">
@@ -120,7 +126,7 @@ export default function Group() {
                 <Col aria-label="posts" span={14} className="">
                   <div aria-label="posts" className="grid gap-4 mr-4">
                     <div aria-label="Share something?" className="">
-                      <Shared data={group} />
+                      <Shared data={groupData} />
                     </div>
 
                     <div
@@ -137,7 +143,7 @@ export default function Group() {
                 <Col aria-label="general info" span={10} className="">
                   <div aria-label="general info" className="grid gap-4">
                     <div aria-label="Preview group" className="">
-                      <PreviewGroup data={group} />
+                      <PreviewGroup data={groupData} />
                     </div>
                     <div aria-label="Top author" className="">
                       <TopAuthorList data={group} />

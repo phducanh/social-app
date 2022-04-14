@@ -7,20 +7,6 @@ import { MemberList } from "@components/Group/MemberList";
 import { GroupLayout } from "@/src/components/Layout/GroupLayout";
 
 
-const post = {
-  id: "iasjdjkaskjdjkkjkxcjzkczkjxzzc",
-  like: 90,
-  dislike: 10,
-  ownerId: "abcxyz",
-  groupId: "nxmxmcn",
-  content: "This is content of post",
-  imageList: [
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/149px-Picture_icon_BLACK.svg.png",
-  ],
-  postedAt: 1619434004304,
-  comment: 20,
-};
-
 export default function Home() {
   const { t } = useTranslation();
   const router = useRouter();

@@ -228,6 +228,14 @@ export default function Button({
               `disabled:text-orange-600 disabled:hover:text-orange-600`
             );
             break;
+          case "red":
+            overrideClassNames.push(
+              `text-[#FF511A] bg-transparent !shadow-none`,
+              `hover:text-[#B72C00]`,
+              `active:text-[#E64210]`,
+              `disabled:text-orange-600 disabled:hover:text-orange-600`
+            );
+            break;
         }
         break;
       default:

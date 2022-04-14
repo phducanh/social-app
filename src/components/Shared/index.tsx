@@ -50,7 +50,7 @@ export const Shared = (props) => {
       </Row>
       <div className="">
         <div className="w-full">
-          <Button size="xs" className="rounded-3xl bg-[#C6FAF0]">
+          <Button size="xs" className="rounded-xl bg-[#C6FAF0] ml-auto mr-2">
             <FileImageOutlined className="flex items-center" />
             Ảnh/Video
           </Button>

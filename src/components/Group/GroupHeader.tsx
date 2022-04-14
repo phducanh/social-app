@@ -1,8 +1,8 @@
-import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { Row, Col, Menu, Dropdown, message } from "antd";
 import { calculateActiveTime } from "@utils/common";
 import { useTranslation } from "next-i18next";
-import { useState } from "react";
 import { QuestionModal } from "./QuestionModal";
 import { ConfirmBill } from "./Payment/ConfirmBill";
 import { UpgradeMember } from "./Payment/UpgradeMember";
@@ -80,10 +80,18 @@ const userData = {
 export const GroupHeader = (props) => {
   const { data } = props;
   const { t } = useTranslation();
-
+  const router = useRouter();
   const [showQuesModal, setShowQuesModal] = useState(false);
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [showDonateModal, setShowDonateModal] = useState(false);
+  const [selectingTab, setSelectingTab] = useState("");
+  const navigate = (path) => {
+    router.push({
+      pathname: "/group",
+      query: { groupId: data._id, page: path },
+    });
+    setSelectingTab(path);
+  };
 
   const joinGroup = () => {
     if (data) {
@@ -166,12 +174,12 @@ export const GroupHeader = (props) => {
             height={"100%"}
             width={"100%"}
             src={
-              data?.cover_image === undefined
+              data?.header === undefined
                 ? "/images/background-group-default.png"
-                : data?.cover_image
+                : data?.header
             }
             alt="background-group"
-            className="h-full rounded-t-xl"
+            className="h-full rounded-t-xl object-cover object-center"
           />
         </div>
 
@@ -181,21 +189,24 @@ export const GroupHeader = (props) => {
             <div
               aria-label="default"
               className="text-[15px] mr-[5px]"
-              hidden={data?.privacy !== undefined ? true : false}
+              hidden={typeof data?.isPrivate !== undefined ? true : false}
             >
               Quyền riêng tư của nhóm
             </div>
             <div
               aria-label="Quyền riêng tư"
               className="flex justify-start"
-              hidden={data?.privacy === undefined ? true : false}
+              hidden={typeof data?.isPrivate === undefined ? true : false}
             >
               <div aria-label="icon" className="m-[3px] h-[18px] w-[18px]">
-                <img src={privacy_types[data?.privacy]?.icon} alt="" />
+                <img
+                  src={privacy_types[data?.isPrivate ? 1 : 0]?.icon}
+                  alt=""
+                />
               </div>
               <div aria-label="chi tiết" className="">
                 <div className="text-[15px] mr-[5px]">
-                  {privacy_types[data?.privacy]?.name}
+                  {privacy_types[data?.isPrivate ? 1 : 0]?.name}
                 </div>
               </div>
             </div>
@@ -204,7 +215,7 @@ export const GroupHeader = (props) => {
               aria-label="Thành viên"
               className="ml-[3px] text-[15px] font-bold"
             >
-              {data?.member === undefined ? 1 : data?.member} thành viên
+              {data?.members.length} thành viên
             </div>
           </div>
         </div>
@@ -244,6 +255,15 @@ export const GroupHeader = (props) => {
             <Col aria-label="join button" className="" xs={24} xl={8}>
               <div className=" py-2 flex justify-end">
                 <div className=" flex justify-end">
+                  <Button
+                    size="xs"
+                    color="orange"
+                    className="h-full mr-3"
+                    onClick={donate}
+                  >
+                    <HeartFilled className="flex items-center" />
+                    <span>Ủng hộ</span>
+                  </Button>
                   <Button size="xs" color="yellow" className="h-full mr-3">
                     <span className="font-bold  text-neutral-600">
                       Chuyển tiền thành viên
@@ -325,30 +345,41 @@ export const GroupHeader = (props) => {
           ></div>
         </div>
 
-        <hr className="my-[10px]" />
+        <hr className="mt-3" />
 
         <div aria-label="Group Navbar" className="flex justify-start">
           <div className="flex">
-            <Button variant="text" className="font-bold">
+            <Button
+              onClick={() => navigate("about")}
+              variant={
+                selectingTab === "about" || selectingTab === ""
+                  ? "outline"
+                  : "text"
+              }
+              className="font-bold rounded-b-0 border-0 active:bg-white hover:bg-white hover:text-green-500"
+            >
               Giới thiệu
             </Button>
-            <Button variant="text" className="font-bold">
+            <Button
+              onClick={() => navigate("feed")}
+              variant={selectingTab === "feed" ? "outline" : "text"}
+              className="font-bold rounded-b-0 border-0 active:bg-white hover:bg-white hover:text-green-500"
+            >
               Thảo luận
             </Button>
-            <Button variant="text" className="font-bold">
-              Xem thêm
-            </Button>
-          </div>
-
-          <div className="flex items-center justify-end w-full pr-3">
             <Button
-              size="xs"
-              color="orange"
-              className="ml-auto text-lg w-[150px] h-[40px]"
-              onClick={donate}
+              onClick={() => navigate("members")}
+              variant={selectingTab === "members" ? "outline" : "text"}
+              className="font-bold rounded-b-0 border-0 active:bg-white hover:bg-white hover:text-green-500"
             >
-              <HeartFilled className="flex items-center" />
-              <span>Ủng hộ</span>
+              Thành viên
+            </Button>
+            <Button
+              onClick={() => navigate("more")}
+              variant={selectingTab === "more" ? "outline" : "text"}
+              className="font-bold rounded-b-0 border-0 active:bg-white hover:bg-white hover:text-green-500"
+            >
+              Xem thêm
             </Button>
           </div>
         </div>
